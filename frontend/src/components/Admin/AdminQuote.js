@@ -44,6 +44,7 @@ const AdminQuote = ({ setConfirmation }) => {
                 } else if (data.status === 200) {
                     console.log("hello", data);
                     setConfirmation("Your quote has been updated")
+                    navigate(`/admin/confirmation`)
                 } else {
                     console.log("unknown error", data);
 
@@ -52,7 +53,7 @@ const AdminQuote = ({ setConfirmation }) => {
             .catch((error) => {
                 console.log(error);
             })
-            .then(() => navigate(`/admin/confirmation`))
+
 
     }
 

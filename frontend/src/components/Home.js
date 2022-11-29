@@ -5,6 +5,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import GlobalStyle from "./GlobalStyle"
 import { useEffect, setState, useState } from "react";
 
+//TODO center quote
 
 
 const Home = () => {
@@ -32,12 +33,9 @@ const Home = () => {
                 <source src={require('../music/waterloop.mp4')} type="video/mp4" />
             </Video>
             {(!quote) ?
-                <div>Welcome to Le Spa</div> :
+                <Text>Welcome to Le Spa</Text> :
                 <Text>{quote}</Text>
             }
-
-
-
         </Wrapper >
 
 

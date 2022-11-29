@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <Wrapper>
             <AudioPlayer
-                autoPlay
+
                 src={require('../music/dis.mp3')}
             />
         </Wrapper>

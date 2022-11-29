@@ -157,18 +157,20 @@ const updateTreatment = async (req, res) => {
     const o_id = new ObjectId(treatmentId);
     await client.connect();
     const db = client.db("lespa");
-    const queryTreatment = await db.collection("pricelist").find({ "_id": o_id })
+    const queryTreatment = await db.collection("pricelist").findOne({ _id: o_id })
 
     const updatedTreatment = {
-        "type": req.body.type,
-        "treatment": req.body.treatment,
-        "treatment_tolower": req.body.treatment.toLowerCase(),
-        "minutes": req.body.minutes,
-        "price": req.body.price
+        type: queryTreatment.type,
+        treatment: req.body.treatment ? req.body.treatment : queryTreatment.treatment,
+        treatment_tolower: req.body.treatment.toLowerCase(),
+        minutes: req.body.minutes ? req.body.minutes : queryTreatment.minutes,
+        price: req.body.price ? req.body.price : queryTreatment.price
     }
 
+    console.log("queryTreatment", queryTreatment);
     if (queryTreatment) {
-        const updateTreatment = await db.collection("pricelist").updateOne(queryTreatment, updatedTreatment);
+
+        const updateTreatment = await db.collection("pricelist").updateOne({ "_id": o_id }, { $set: updatedTreatment });
         res.status(200).json({ status: 200, message: "success", data: req.body })
 
     } else {

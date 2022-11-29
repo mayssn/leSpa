@@ -25,12 +25,13 @@ const AdminServices = ({ setConfirmation }) => {
 
 
 
-    const handleDelete = () => {
-
+    const handleDelete = (e) => {
+        e.preventDefault()
+        console.log("treatmentID", treatmentID);
         fetch(`http://localhost:8000/api/delete-treatment/${treatmentID}`, {
             method: "DELETE",
             headers: {
-                "Accept": "application/json",
+                Accept: "application/json",
                 "Content-Type": "application/json",
             },
         })
@@ -65,10 +66,10 @@ const AdminServices = ({ setConfirmation }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "type": selectedType,
-                "treatment": selectedTreatment,
-                "minutes": minutes,
-                "price": price
+                type: selectedType,
+                treatment: selectedTreatment,
+                minutes: minutes,
+                price: price
             }),
         })
             .then((response) => response.json())
@@ -78,14 +79,15 @@ const AdminServices = ({ setConfirmation }) => {
                 } else if (data.status === 200) {
                     console.log("hello", data);
                     setConfirmation("The service has been updated")
-                    navigate(`/admin/confirmation`);
+                    navigate(`/admin/confirmation`)
                 } else {
                     console.log("unknown error", data);
                 }
             })
             .catch((error) => {
                 console.log(error);
-            });
+            })
+
     }
 
 
@@ -149,6 +151,7 @@ const AdminServices = ({ setConfirmation }) => {
 
 
     console.log("id", treatmentID)
+    console.log("selected", selectedType)
     // console.log("treatment", selectedTreatment)
     // console.log("min", minutes)
     // console.log("Price", price)
@@ -161,7 +164,7 @@ const AdminServices = ({ setConfirmation }) => {
         <Wrapper>
             <Box>
                 <Title> Edit Services</Title>
-                <Form id="editForm">
+                <Form onSubmit={handleSubmit}>
                     <label>
                         <Label> Select Treatment Type: </Label>
                         <Select onChange={handleSelectType}>
