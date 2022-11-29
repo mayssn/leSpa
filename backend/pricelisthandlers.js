@@ -51,7 +51,7 @@ const getTreatmentTypes = async (req, res) => {
         console.log(treatmentType)
         res.status(200).json({ status: 200, data: treatmentType })
     } catch (err) {
-        res.status(200).json({ status: 200, message: "Error" })
+        res.status(400).json({ status: 400, message: "Error" })
     }
     client.close()
 };
@@ -153,23 +153,26 @@ const getQuote = async (req, res) => {
 
 
 const updateTreatment = async (req, res) => {
-    const treatmentId = `ObjectId('${req.params.treatmentId}')`
+    const treatmentId = req.params.treatment;
+    const o_id = new ObjectId(treatmentId);
     await client.connect();
     const db = client.db("lespa");
-    query = { "data": "quote" }
-    const newQuote = {
-        type: req.body.selectedType,
-        treatment: req.body.treatment,
-        treatment_tolower: req.body.treatment.toLowerCase(),
-        minutes: req.body.minutes,
-        price: req.body.price
+    const queryTreatment = await db.collection("pricelist").find({ "_id": o_id })
+
+    const updatedTreatment = {
+        "type": req.body.type,
+        "treatment": req.body.treatment,
+        "treatment_tolower": req.body.treatment.toLowerCase(),
+        "minutes": req.body.minutes,
+        "price": req.body.price
     }
-    if (query) {
-        const updateQuote = await db.collection("data").updateOne(query, newQuote);
+
+    if (queryTreatment) {
+        const updateTreatment = await db.collection("pricelist").updateOne(queryTreatment, updatedTreatment);
         res.status(200).json({ status: 200, message: "success", data: req.body })
 
     } else {
-        res.status(400).json({ status: 400, message: `failed to fetch`, data: req.body });
+        res.status(400).json({ status: 400, message: `not found`, data: req.body });
     }
 
     client.close()
@@ -196,5 +199,5 @@ const updateQuote = async (req, res) => {
 
 module.exports = {
     getTreatments, getTreatmentTypes, getSingleTreatment, getTreatmentByType,
-    addTreatment, deleteTreatment, updateQuote, getQuote, getPricelist
+    addTreatment, deleteTreatment, updateQuote, getQuote, getPricelist, updateTreatment
 }

@@ -46,7 +46,7 @@ const App = () => {
             <Route exact path="/admin/" element={<AdminHome />} />
             <Route exact path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/add-services" element={<AdminAddService setConfirmation={setConfirmation} />} />
+            <Route exact path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/password" element={<AdminPassword setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
           </Routes>

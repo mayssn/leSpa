@@ -12,7 +12,8 @@ const {
     deleteTreatment,
     updateQuote,
     getQuote,
-    getPricelist
+    getPricelist,
+    updateTreatment
 } = require("./pricelisthandlers")
 
 const { createEvent } = require("./handlers")
@@ -30,6 +31,7 @@ express()
     .post("/api/add-treatment", addTreatment)
     .delete("/api/delete-treatment/:treatment", deleteTreatment)
     .patch("/api/update-quote", updateQuote)
+    .patch("/api/update-treatment/:treatment", updateTreatment)
     .get("/api/get-quote", getQuote)
 
 

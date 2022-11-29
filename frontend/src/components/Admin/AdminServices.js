@@ -13,12 +13,13 @@ const AdminServices = ({ setConfirmation }) => {
     const [treatmentsList, setTreatmentsList] = useState(null)
     const [pricelist, setPricelist] = useState(null)
     const [selectedTreatment, setSelectedTreatment] = useState(null)
-    const [updatedName, setUpdatedName] = useState(null)
     const [minutes, setMinutes] = useState(null)
     const [price, setPrice] = useState(null)
     const [treatmentID, setTreatmentId] = useState(null)
-    const [isDisabled, setIsDisabled] = useState(null)
 
+    // const [updatedMinutes, setUpdatedMinutes] = useState(null)
+    // const [updatedName, setUpdatedName] = useState(null)
+    // const [updatedPrice, setUpdatedPrice] = useState(null)
 
     let navigate = useNavigate()
 
@@ -26,7 +27,7 @@ const AdminServices = ({ setConfirmation }) => {
 
     const handleDelete = () => {
 
-        fetch(`/api/delete-treatment/${treatmentID}`, {
+        fetch(`http://localhost:8000/api/delete-treatment/${treatmentID}`, {
             method: "DELETE",
             headers: {
                 "Accept": "application/json",
@@ -36,17 +37,17 @@ const AdminServices = ({ setConfirmation }) => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === 400) {
-                    throw new Error(data.message);
+                    console.log("treatment not found", data);
                 } else if (data.status === 200) {
                     setConfirmation("The service has been updated")
-                    navigate(`/admin/confirmation`);
                 } else {
                     console.log("unknown error", data);
                 }
             })
             .catch((error) => {
                 console.log(error);
-            });
+            })
+            .then(() => navigate(`/admin/confirmation`))
     }
 
 
@@ -58,16 +59,16 @@ const AdminServices = ({ setConfirmation }) => {
 
 
         fetch(`http://localhost:8000/api/update-treatment/${treatmentID}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                type: selectedType,
-                treatment: updatedName,
-                minutes: minutes,
-                price: price
+                "type": selectedType,
+                "treatment": selectedTreatment,
+                "minutes": minutes,
+                "price": price
             }),
         })
             .then((response) => response.json())
@@ -148,11 +149,12 @@ const AdminServices = ({ setConfirmation }) => {
 
 
     console.log("id", treatmentID)
-    console.log("treatment", selectedTreatment)
-    console.log("min", minutes)
-    console.log("Price", price)
+    // console.log("treatment", selectedTreatment)
+    // console.log("min", minutes)
+    // console.log("Price", price)
     // console.log("pricelist", pricelist)
     // console.log("types", types)
+
 
 
     return (
@@ -161,7 +163,7 @@ const AdminServices = ({ setConfirmation }) => {
                 <Title> Edit Services</Title>
                 <Form id="editForm">
                     <label>
-                        <Label> Treatment Type: </Label>
+                        <Label> Select Treatment Type: </Label>
                         <Select onChange={handleSelectType}>
                             <option selected disabled hidden>Select Type</option>
 
@@ -175,7 +177,7 @@ const AdminServices = ({ setConfirmation }) => {
                         </Select>
                     </label>
                     <label>
-                        <Label> Treatment Type: </Label>
+                        <Label> Select Treatment: </Label>
                         <Select onChange={(e) => setSelectedTreatment(e.target.value)}>
                             <option selected disabled hidden></option>
                             {(!pricelist || !setTypes) ?
@@ -214,7 +216,7 @@ const AdminServices = ({ setConfirmation }) => {
 
                     </label>
                     <Buttons>
-                        <Submit type="submit" value="update" disabled={isDisabled}> Update </Submit>
+                        <Submit type="submit" value="update" > Update </Submit>
                         <DelReset>
                             <Delete type="reset" onClick={() => { window.location.reload() }}> Reset </Delete>
                             <Delete onClick={handleDelete}> Delete </Delete>
@@ -234,7 +236,7 @@ const Wrapper = styled.div`
     border: 1px solid gray;
     background-color: black;
     background-image: url(${img});
- 
+    padding: 0 0 100px 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -243,13 +245,13 @@ const Wrapper = styled.div`
 
 const Box = styled.div`
     width: 900px;
-    height: 1000px;
     background-color: white;
     display: flex;
     justify-content: flex - start;
     align-items: center;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 15px;
+    padding: 0 0 30px 0;
     `
 const Select = styled.select`
 
@@ -262,7 +264,7 @@ const Title = styled.h3`
     font-weight: lighter;
     font-size: 30px;
     color: gray;
-    margin: 40px 0
+    margin: 30px 0 15px 0 ;
 
         `
 
@@ -324,22 +326,8 @@ const Delete = styled.button`
 const DelReset = styled.div`
     display: flex;
     flex-direction:row;
-    justify-content:space-between`
+    justify-content:space-between;`
 
 export default AdminServices;
 
 
-
-    // useEffect(() => {
-
-    //     fetch(`http://localhost:8000/api/get-treatment-byType/${selectedType}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             if (data.status === 400) {
-    //                 console.log(data)
-    //             } else {
-    //                 console.log("Data", data)
-    //                 setTreatmentsList(data.data)
-    //             }
-    //         })
-    // }, []);
