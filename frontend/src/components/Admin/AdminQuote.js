@@ -6,12 +6,10 @@ import styled from "styled-components";
 
 
 
-
 const AdminQuote = ({ setConfirmation }) => {
+    const [oldQuote, setOldQuote] = useState(null)
     const [newQuote, setNewQuote] = useState(null)
-    const [input, setInput] = useState(null)
     let navigate = useNavigate();
-
 
     useEffect(() => {
         fetch("http://localhost:8000/api/get-quote/")
@@ -22,8 +20,7 @@ const AdminQuote = ({ setConfirmation }) => {
                     console.log(data.message)
                 } else {
                     console.log(data.data)
-                    setNewQuote(data.data)
-
+                    setOldQuote(data.data)
 
                 }
             })
@@ -31,16 +28,14 @@ const AdminQuote = ({ setConfirmation }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setNewQuote(input)
-
 
         fetch("http://localhost:8000/api/update-quote/", {
             method: "PATCH",
+            body: JSON.stringify({ quote: newQuote }),
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ quote: newQuote }),
         })
             .then((response) => response.json())
             .then((data) => {
@@ -49,7 +44,6 @@ const AdminQuote = ({ setConfirmation }) => {
                 } else if (data.status === 200) {
                     console.log("hello", data);
                     setConfirmation("Your quote has been updated")
-                    navigate(`/admin/confirmation`);
                 } else {
                     console.log("unknown error", data);
 
@@ -57,10 +51,10 @@ const AdminQuote = ({ setConfirmation }) => {
             })
             .catch((error) => {
                 console.log(error);
-            });
+            })
+            .then(() => navigate(`/admin/confirmation`))
 
     }
-
 
 
 
@@ -70,22 +64,22 @@ const AdminQuote = ({ setConfirmation }) => {
             <Box>
                 <Title> Edit Quote </Title>
                 <Quote>
-                    {(!newQuote) ?
+                    {(!oldQuote) ?
                         <div> Loading...</div>
-                        : <div>{newQuote}</div>
+                        : <div>{oldQuote}</div>
                     }
                 </Quote>
                 <Form onSubmit={handleSubmit}>
                     <label>
-                        <Input type="text" name="quote" onChange={(e) => setInput(e.target.value)} />
+                        <Input type="text" name="quote" onChange={(e) => setNewQuote(e.target.value)} />
                     </label>
                     <Input type="submit" value="Submit" />
                 </Form>
             </Box>
         </Wrapper >
     );
-}
 
+}
 
 const Wrapper = styled.div`
         border: 1px solid gray;
@@ -110,13 +104,12 @@ const Box = styled.div`
         `
 
 
-
 const Title = styled.h3`
     font-family:"Helvetica Neue";
     font-weight: lighter;
     font-size: 30px;
     color: gray;
-    margin: 40px 0
+    margin: 40px 0;
 
     `
 
@@ -137,6 +130,4 @@ width: 500px;
 `
 
 
-
 export default AdminQuote;
-

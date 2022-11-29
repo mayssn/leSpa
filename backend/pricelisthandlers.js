@@ -1,4 +1,5 @@
 const e = require("express");
+const ObjectId = require('mongodb').ObjectId;
 
 const { MongoClient } = require("mongodb")
 require("dotenv").config();
@@ -112,14 +113,17 @@ const addTreatment = async (req, res) => {
 
 
 const deleteTreatment = async (req, res) => {
-    const treatmentId = `ObjectId('${req.params.treatment}')`
+
+    const treatmentId = req.params.treatment;
+    const o_id = new ObjectId(treatmentId);
+
     console.log(treatmentId)
     await client.connect();
     const db = client.db("lespa");
-    const queryTreatment = await db.collection("pricelist").findOne({ _id: treatmentId })
+    const queryTreatment = await db.collection("pricelist").find({ "_id": o_id })
 
-    if (treatmentId) {
-        await db.collection("pricelist").deleteOne({ _id: treatmentId });
+    if (queryTreatment) {
+        await db.collection("pricelist").deleteOne({ "_id": o_id });
 
         res.status(200).json({ status: 200, message: "treatment deleted", data: queryTreatment })
 
@@ -149,7 +153,7 @@ const getQuote = async (req, res) => {
 
 
 const updateTreatment = async (req, res) => {
-    const treatmentId = `ObjectId('${req.params.treatment}')`
+    const treatmentId = `ObjectId('${req.params.treatmentId}')`
     await client.connect();
     const db = client.db("lespa");
     query = { "data": "quote" }
