@@ -60,6 +60,7 @@ const Wrap = styled.div`
     color: black;
     font-family:" Arial, Helvetica, sans-serif";
     font-size: 16px;
+    padding: 0 0 40px 0;
     `
 const Container = styled.div`
     display: flex;

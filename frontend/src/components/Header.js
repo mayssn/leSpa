@@ -42,10 +42,10 @@ const Header = () => {
             </Left>
             <Right>
                 <Li>
-                    <Link to="services"> Our Services </Link>
+                    <Link to="about"> About us </Link>
                 </Li>
                 <Li>
-                    <Link to="book"> Book an Appointment </Link>
+                    <Link to="services"> Our Services </Link>
                 </Li>
                 <Li>
                     <Link to="contact"> Contact us </Link>

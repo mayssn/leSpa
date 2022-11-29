@@ -32,7 +32,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 300px 0;
+    padding: 0 0 100px 0;
 `
 const Container = styled.div`
     display: flex;

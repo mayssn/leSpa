@@ -1,5 +1,5 @@
 backend/.env
-
+.env
 frontend/node_modules
 frontend/src/music
 frontend/src/imgs
