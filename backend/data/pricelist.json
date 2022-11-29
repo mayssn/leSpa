@@ -1,0 +1,261 @@
+[
+  {
+    "type": "Face",
+    "treatment": "Deep Cleaning",
+    "treatment_lower": "deep cleaning",
+    "minutes": "60",
+    "price": "50"
+  },
+  {
+    "type": "Face",
+    "treatment": "Acne Prone",
+    "treatment_lower": "acne prone",
+    "minutes": "60",
+    "price": "50"
+  },
+  {
+    "type": "Face",
+    "treatment": "Diamond Peel",
+    "treatment_lower": "diamond peel",
+    "minutes": "45",
+    "price": "50"
+  },
+  {
+    "type": "Face",
+    "treatment": "Derma Calm",
+    "treatment_lower": "derma calm",
+    "minutes": "60",
+    "price": "65"
+  },
+  {
+    "type": "Face",
+    "treatment": "Oxy Peel",
+    "treatment_lower": "oxy peel",
+    "minutes": "60",
+    "price": "65"
+  },
+  {
+    "type": "Face",
+    "treatment": "Oxy Collagen",
+    "treatment_lower": "oxy collagen",
+    "minutes": "75",
+    "price": "80"
+  },
+  {
+    "type": "Face",
+    "treatment": "Crio Rejuvenale",
+    "treatment_lower": "crio rejuvenale",
+    "minutes": "75",
+    "price": "80"
+  },
+  {
+    "type": "Face",
+    "treatment": "Slim & Lift",
+    "treatment_lower": "slim & lift",
+    "minutes": "75",
+    "price": "80"
+  },
+  {
+    "type": "Face",
+    "treatment": "Thalgo : Reviver",
+    "treatment_lower": "thalgo : reviver",
+    "minutes": "30",
+    "price": "40"
+  },
+  {
+    "type": "Face",
+    "treatment": "Thalgo : Hygrade",
+    "treatment_lower": "thalgo : hydrate",
+    "minutes": "55",
+    "price": "60"
+  },
+  {
+    "type": "Face",
+    "treatment": "Thalgo : Activator",
+    "treatment_lower": "thalgo : activator",
+    "minutes": "55",
+    "price": "70"
+  },
+  {
+    "type": "Face",
+    "treatment": "Thalgo: Corrector",
+    "treatment_lower": "thalgo : corrector",
+    "minutes": "60",
+    "price": "80"
+  },
+  {
+    "type": "Body",
+    "treatment": "Relaxing Body Massage",
+    "treatment_lower": "relaxing body massage",
+    "minutes": "30",
+    "price": "25"
+  },
+  {
+    "type": "Body",
+    "treatment": "Swedish Body Massage",
+    "treatment_lower": "swedish body massage",
+    "minutes": "55",
+    "price": "40"
+  },
+  {
+    "type": "Body",
+    "treatment": "Aromatherapy (55 minutes)",
+    "treatment_lower": "aromatherapy (55 minutes)",
+    "minutes": "55",
+    "price": "40"
+  },
+  {
+    "type": "Body",
+    "treatment": "Aromatherapy (75 minutes)",
+    "treatment_lower": "aromatherapy (75 minutes)",
+    "minutes": "75",
+    "price": "55"
+  },
+  {
+    "type": "Body",
+    "treatment": "Mom to Be",
+    "treatment_lower": "mom to be",
+    "minutes": "45",
+    "price": "40"
+  },
+  {
+    "type": "Body",
+    "treatment": "Lymphatic Drainage",
+    "treatment_lower": "lymphatic drainage",
+    "minutes": "75",
+    "price": "55"
+  },
+  {
+    "type": "Body",
+    "treatment": "Pres-O-Therapy",
+    "treatment_lower": "pres-o-therapy presotherapy",
+    "minutes": "55",
+    "price": "45"
+  },
+  {
+    "type": "Body",
+    "treatment": "Le Spa Thai Massage",
+    "treatment_lower": "le spa thai massage",
+    "minutes": "75",
+    "price": "50"
+  },
+  {
+    "type": "Body",
+    "treatment": "Le Spa Signature Massage",
+    "treatment_lower": "le spa signature massage",
+    "minutes": "75",
+    "price": "60"
+  },
+  {
+    "type": "Body",
+    "treatment": "Hot Stone",
+    "treatment_lower": "hot stone",
+    "minutes": "90",
+    "price": "60"
+  },
+  {
+    "type": "Body",
+    "treatment": "Restorative",
+    "treatment_lower": "restorative",
+    "minutes": "90",
+    "price": "60"
+  },
+  {
+    "type": "Body",
+    "treatment": "Candle Massage",
+    "treatment_lower": "candle massage",
+    "minutes": "45",
+    "price": "40"
+  },
+  {
+    "type": "Body",
+    "treatment": "Scrub & Exfoliate",
+    "treatment_lower": "scrub & exfoliate",
+    "minutes": "75",
+    "price": "55"
+  },
+  {
+    "type": "Body",
+    "treatment": "Body Cocoon",
+    "treatment_lower": "body cocoon",
+    "minutes": "40",
+    "price": "30"
+  },
+  {
+    "type": "Body",
+    "treatment": "Slim/ RF/Cavitation/Cooling",
+    "treatment_lower": "slim rf cavitation cooling",
+    "minutes": "80",
+    "price": "60"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Face Scultping Massage",
+    "treatment_lower": "face sculpting massage",
+    "minutes": "25",
+    "price": "25"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Honey Facial",
+    "treatment_lower": "honey facial",
+    "minutes": "30",
+    "price": "25"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Pick me up",
+    "treatment_lower": "pick me up",
+    "minutes": "45",
+    "price": "40"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Face Gym",
+    "treatment_lower": "face gym",
+    "minutes": "40",
+    "price": "40"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Gouacha",
+    "treatment_lower": "gouache",
+    "minutes": "45",
+    "price": "50"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Skin Detox",
+    "treatment_lower": "skin detox",
+    "minutes": "45",
+    "price": "50"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Skin Hydrate",
+    "treatment_lower": "skin hydrate",
+    "minutes": "45",
+    "price": "50"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Legs Compression",
+    "treatment_lower": "legs Compression",
+    "minutes": "50",
+    "price": "35"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Foot Massage",
+    "treatment_lower": "foot massage",
+    "minutes": "25",
+    "price": "20"
+  },
+  {
+    "type": "Xpress",
+    "treatment": "Hair & Scalp",
+    "treatment_lower": "hair & scalp",
+    "minutes": "25",
+    "price": "60"
+  }
+]
