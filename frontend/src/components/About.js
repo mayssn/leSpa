@@ -27,6 +27,7 @@ const About = () => {
 const Wrapper = styled.div`
     background-color: black;
     background-image: url(${img});
+    min-height: calc(100vh - 70px);
     margin-top: 0;
     color:white;
     display: flex;

@@ -28,6 +28,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 0 0 100px 0;
+    min-height: calc(100vh - 70px);
 `
 const About = styled.div`
     display: flex;

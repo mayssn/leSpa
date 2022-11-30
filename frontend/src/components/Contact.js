@@ -61,6 +61,7 @@ const Wrap = styled.div`
     font-family:" Arial, Helvetica, sans-serif";
     font-size: 16px;
     padding: 0 0 40px 0;
+    min-height: calc(100vh - 70px);
     `
 const Container = styled.div`
     display: flex;

@@ -8,14 +8,24 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 const AdminAddService = ({ setConfirmation }) => {
-    const [pricelist, setPricelist] = useState(null)
     const [types, setTypes] = useState([])
+    const [formData, setFormData] = useState({});
     const [selected, setSelectedType] = useState(null)
     const [treatment, setTreatment] = useState(null)
     const [minutes, setMinutes] = useState(null)
     const [price, setPrice] = useState(null)
 
     let navigate = useNavigate()
+
+
+
+    // useEffect(() => {
+    //     console.log("data", formData)
+    //     Object.values(formData).includes("") || formData.order === "undefined"
+    //         ? setIsDisabled(true)
+    //         : setIsDisabled(false);
+    // }, [formData]);
+
 
 
 

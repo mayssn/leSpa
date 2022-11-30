@@ -17,9 +17,7 @@ const AdminServices = ({ setConfirmation }) => {
     const [price, setPrice] = useState(null)
     const [treatmentID, setTreatmentId] = useState(null)
 
-    // const [updatedMinutes, setUpdatedMinutes] = useState(null)
-    // const [updatedName, setUpdatedName] = useState(null)
-    // const [updatedPrice, setUpdatedPrice] = useState(null)
+
 
     let navigate = useNavigate()
 
@@ -34,31 +32,20 @@ const AdminServices = ({ setConfirmation }) => {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-        })
-            .then((response) => response.json())
+        }).then((response) => response.json())
             .then((data) => {
-                if (data.status === 400) {
-                    console.log("treatment not found", data);
-                } else if (data.status === 200) {
-                    setConfirmation("The service has been updated")
-                } else {
-                    console.log("unknown error", data);
-                }
-            })
-            .catch((error) => {
+                (data.status === 400) ? console.log("treatment not found", data)
+                    : (data.status === 200) ? setConfirmation("The service has been updated")
+                        : console.log("unknown error", data);
+            }).catch((error) => {
                 console.log(error);
-            })
-            .then(() => navigate(`/admin/confirmation`))
+            }).then(() => navigate(`/admin/confirmation`))
     }
 
-
-    // to fetch the treatment types
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-
         fetch(`http://localhost:8000/api/update-treatment/${treatmentID}`, {
             method: "PATCH",
             headers: {
@@ -89,20 +76,6 @@ const AdminServices = ({ setConfirmation }) => {
             })
 
     }
-
-
-
-    // useEffect(() => {
-    //     console.log("data", formData)
-    //     Object.values(formData).includes("") || formData.order === "undefined"
-    //         ? setIsDisabled(true)
-    //         : setIsDisabled(false);
-    // }, [formData]);
-
-
-
-
-
 
 
 
@@ -141,22 +114,10 @@ const AdminServices = ({ setConfirmation }) => {
                     setTreatmentId(x._id)
 
                 }
-            }
-            )
+            })
         }
 
     }, [selectedTreatment]);
-
-    console.log(selectedTreatment)
-
-
-    console.log("id", treatmentID)
-    console.log("selected", selectedType)
-    // console.log("treatment", selectedTreatment)
-    // console.log("min", minutes)
-    // console.log("Price", price)
-    // console.log("pricelist", pricelist)
-    // console.log("types", types)
 
 
 
@@ -200,7 +161,7 @@ const AdminServices = ({ setConfirmation }) => {
                     </label>
                     <label>
                         <Label> Edit Name: </Label>
-                        <Input type="text" name="name" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
+                        <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
                     </label>
                     <label>
                         <Label> Minutes: </Label>
@@ -226,10 +187,6 @@ const AdminServices = ({ setConfirmation }) => {
                         </DelReset>
                     </Buttons>
                 </Form>
-
-
-
-
             </Box>
         </Wrapper >
     );
@@ -244,6 +201,7 @@ const Wrapper = styled.div`
     align-items: flex-start;
     justify-content: center;
     border: none;
+    min-height: calc(100vh - 70px);
     `
 
 const Box = styled.div`

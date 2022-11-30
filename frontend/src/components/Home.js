@@ -47,10 +47,10 @@ export default Home;
 const Wrapper = styled.div`
                 position: relative;
                 background-color: white;
-                height: calc(100vh - 120px);
+                min-height: 60vh;
                 padding: 0;
                 margin:0;
-                background-color:rgba(66,170,182,255)`
+                background-color:rgba(66,170,182,255);`
 
 const Video = styled.video`
                 width: 100vw;
@@ -62,7 +62,7 @@ const Text = styled.p`
     position: absolute;
 
   
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     /* width: 100%;

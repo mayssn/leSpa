@@ -52,9 +52,8 @@ const Header = () => {
                 </Li>
             </Right>
 
-
-
         </Wrapper>
+
 
 
     );
