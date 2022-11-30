@@ -9,8 +9,8 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 
 const Contact = () => {
-    const { isLoaded } = useLoadScript({ googleMapsApiKey: "AIzaSyCh_zx4qawF0Xx70tk6tRz100L7i7PWN64" })
 
+    const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY })
 
     const data = ContactInfo
     // console.log("data", data)
@@ -27,19 +27,21 @@ const Contact = () => {
                                         address={x.location.address}
                                         lat={x.location.lat}
                                         lng={x.location.lng} />}
-                                <Title>{x.branch}</Title>
-                                <Box>
-                                    <Icon>
-                                        <CiLocationOn />
-                                    </Icon>
-                                    {x.location.address}
-                                </Box>
-                                <Box>
-                                    <Icon>
-                                        <BsTelephone />
-                                    </Icon>
-                                    {x.tel}
-                                </Box>
+                                <TextBox>
+                                    <Title>{x.branch}</Title>
+                                    <Box>
+                                        <Icon>
+                                            <CiLocationOn />
+                                        </Icon>
+                                        {x.location.address}
+                                    </Box>
+                                    <Box>
+                                        <Icon>
+                                            <BsTelephone />
+                                        </Icon>
+                                        {x.tel}
+                                    </Box>
+                                </TextBox>
                             </Branch>
                         )
 
@@ -61,7 +63,7 @@ const Wrap = styled.div`
     font-family:" Arial, Helvetica, sans-serif";
     font-size: 16px;
     padding: 0 0 40px 0;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 100px);
     `
 const Container = styled.div`
     display: flex;
@@ -74,30 +76,38 @@ const Container = styled.div`
 `
 
 const Branch = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 50px;
     background-color: white;
     width: 600px;
     padding: 10px 50px;
     border-radius:12px;
     opacity: 0.75;
+    padding: 30px;
 
     `
 
-const Title = styled.p``
+const Title = styled.p`
+    font-weight:bold;`
 
 const Box = styled.div`
     display: flex;
     align-items:center;
-    font-size: 14px`
+    font-size: 14px;`
 
 
 const Icon = styled.p`
     display: inline-flex;
     font-size:20px;
-    margin-right:20px`
+    margin-right:20px;`
+
+const TextBox = styled.div`
+    display: inline-flex;
+    flex-direction: column;
+    width:200px;
+    margin-left:0;`
 
 export default Contact;
