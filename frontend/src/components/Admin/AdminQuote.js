@@ -61,7 +61,7 @@ const AdminQuote = ({ setConfirmation }) => {
     }
 
 
-    if (!isAuth) {
+    if (!isAuth ) {
         return <AdminLogin />
     }
 

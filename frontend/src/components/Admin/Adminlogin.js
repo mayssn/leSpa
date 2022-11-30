@@ -5,11 +5,15 @@ import img from "../../imgs/snap.png";
 import AdminQuote from "./AdminQuote";
 
 const AdminLogin = () => {
-  const [formData, setFormData] = useState({});
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState({ status: false, message: "" });
-  const navigate = useNavigate();
+  const [value, setValue] = useState(null)
+  const [formData, setFormData] = useState({
+    email: null,
+    password: null,
+  });
 
+  const navigate = useNavigate();
   const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"));
 
   const changeHandler = (e) => {
@@ -19,10 +23,15 @@ const AdminLogin = () => {
     });
   };
 
+  console.log(value)
+
   useEffect(() => {
     Object.values(formData).includes("") ||
-    formData.email === "undefined" ||
-    formData.password === "undefined"
+      // formData.email.length >= 1 ||
+      // formData.password.length >= 1
+      // ||
+      formData.email === null ||
+      formData.password === null
       ? setDisabled(true)
       : setDisabled(false);
   }, [formData]);

@@ -11,41 +11,66 @@ import AdminLogin from "./Adminlogin";
 
 const AdminAddService = ({ setConfirmation }) => {
     const [types, setTypes] = useState([])
-    const [formData, setFormData] = useState({});
-    const [selected, setSelectedType] = useState(null)
-    const [treatment, setTreatment] = useState(null)
-    const [minutes, setMinutes] = useState(null)
-    const [price, setPrice] = useState(null)
+    const [disabled, setDisabled] = useState(true);
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
-
 
     let navigate = useNavigate()
 
 
+    const [formData, setFormData] = useState({
+        "selectedType": null,
+        "treatment": null,
+        "minutes": null,
+        "price": null,
+    });
+
+    const changeHandler = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
 
 
 
-    // useEffect(() => {
-    //     console.log("data", formData)
-    //     Object.values(formData).includes("") || formData.order === "undefined"
-    //         ? setIsDisabled(true)
-    //         : setIsDisabled(false);
-    // }, [formData]);
-
-
+    useEffect(() => {
+        (Object.values(formData).includes("") ||
+            formData.selectedType === null ||
+            formData.treatment === null ||
+            formData.minutes === null ||
+            formData.price === null)
+            ? setDisabled(true)
+            : setDisabled(false);
+    }, [formData]);
 
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //TODO
-    }
+        fetch("http://localhost:8000/api/add-treatment", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 400) {
+                    throw new Error(data.message);
+                } else if (data.status === 200) {
+                    console.log("hello", data);
+                    setConfirmation("The service has been added")
+                    navigate(`/admin/confirmation`)
+                } else {
+                    console.log("unknown error", data);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
-
-
-
-    const handleSelectType = (ev) => {
-        setSelectedType(ev.target.value);
     }
 
 
@@ -64,7 +89,8 @@ const AdminAddService = ({ setConfirmation }) => {
     }, []);
 
 
-
+    console.log(formData)
+    console.log("disabled", disabled)
 
     if (!isAuth) {
         return <AdminLogin />
@@ -74,10 +100,10 @@ const AdminAddService = ({ setConfirmation }) => {
         < Wrapper >
             <Box>
                 <Title> Add New Service</Title>
-                <Form >
+                <Form onSubmit={handleSubmit}>
                     <label>
                         <Label> Treatment Type: </Label>
-                        <Select onChange={handleSelectType}>
+                        <Select name="selectedType" onChange={changeHandler}>
                             <option selected disabled hidden>Select Type</option>
                             {(!types) ?
                                 <option> loading</option>
@@ -90,27 +116,23 @@ const AdminAddService = ({ setConfirmation }) => {
                     </label>
                     <label>
                         <Label> Treatment Name: </Label>
-                        <Input type="text" name="name" id="name" onChange={(e) => setTreatment(e.target.value)} />
+                        <Input type="text" name="treatment" id="name" onChange={changeHandler} />
                     </label>
                     <label>
                         <Label> Minutes: </Label>
-                        <Input type="text" name="minutes" onChange={(e) => setMinutes(e.target.value)} />
+                        <Input type="text" name="minutes" onChange={changeHandler} />
                     </label>
                     <label>
                         <Label> Price: </Label>
-                        <Input type="text" name="price" onChange={(e) => setPrice(e.target.value)} />
+                        <Input type="text" name="price" onChange={changeHandler} />
                     </label>
                     <Buttons>
-                        <Submit type="submit" value="update"> Update </Submit>
+                        <Submit type="submit" value="update" disabled={disabled}> Update </Submit>
                         <DelReset>
                             <Delete type="reset" onClick={() => { window.location.reload() }}> Reset </Delete>
                         </DelReset>
                     </Buttons>
                 </Form>
-
-
-
-
             </Box>
         </Wrapper >
 
@@ -190,7 +212,13 @@ const Submit = styled.button`
     height: 30px;
     padding: 0;
 
+&:hover {
+    cursor: pointer;
+}
 
+&:disabled: {
+    cursor: disabled;
+  }
     `
 
 

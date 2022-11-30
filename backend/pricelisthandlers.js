@@ -14,9 +14,6 @@ const options = {
 const client = new MongoClient(MONGO_URI, options);
 
 
-// use this package to generate unique ids: https://www.npmjs.com/package/uuid
-const { v4: uuidv4 } = require("uuid");
-
 
 
 
@@ -29,10 +26,7 @@ const userAuth = async (req, res) => {
     try {
         const isAdmin = await db.collection("admin").findOne({ email })
         const isValidPassword = await bcrypt.compare(password, isAdmin.password)
-
-
-        console.log("isValidPassword", isValidPassword);
-        if (isValidPassword) {
+        if (!isAdmin || isValidPassword) {
             res.status(200).json({ status: 200, data: true })
         } else {
             res.status(400).json({ status: 400, data: false, message: " Invalid username and/or password." })
@@ -117,22 +111,23 @@ const getTreatmentByType = async (req, res) => {
 
 
 const addTreatment = async (req, res) => {
-    const data = req.body
+
     const input = {
-        type: req.body.type,
+        type: req.body.selectedType,
         treatment: req.body.treatment,
-        treatment_tolower: req.body.treatment.toLowerCase(),
+        treatment_lower: req.body.treatment.toLowerCase(),
         minutes: req.body.minutes,
         price: req.body.price,
     }
 
+    // if Object.keys(input)
     try {
         await client.connect();
         const db = client.db("lespa");
         const treatmentNew = await db.collection("pricelist").insertOne(input)
         res.status(200).json({ status: 200, message: "success", data: input })
     } catch (err) {
-        res.status(400).json({ status: 400, message: "add unsuccessful.", data: data });
+        res.status(400).json({ status: 400, message: "add unsuccessful.", data: input });
     }
     client.close()
 };
@@ -167,14 +162,11 @@ const getQuote = async (req, res) => {
     const db = client.db("lespa");
     const quote = await db.collection("data").distinct("quote")
     console.log(quote)
-
     if (quote) {
         res.status(200).json({ status: 200, data: quote })
-
     } else {
         res.status(400).json({ status: 400, message: `error` });
     }
-
     client.close()
 }
 
@@ -189,21 +181,18 @@ const updateTreatment = async (req, res) => {
     const updatedTreatment = {
         type: queryTreatment.type,
         treatment: req.body.treatment ? req.body.treatment : queryTreatment.treatment,
-        treatment_tolower: req.body.treatment.toLowerCase(),
+        treatment_lower: req.body.treatment.toLowerCase(),
         minutes: req.body.minutes ? req.body.minutes : queryTreatment.minutes,
         price: req.body.price ? req.body.price : queryTreatment.price
     }
 
-    console.log("queryTreatment", queryTreatment);
-    if (queryTreatment) {
 
+    if (queryTreatment) {
         const updateTreatment = await db.collection("pricelist").updateOne({ "_id": o_id }, { $set: updatedTreatment });
         res.status(200).json({ status: 200, message: "success", data: req.body })
-
     } else {
         res.status(400).json({ status: 400, message: `not found`, data: req.body });
     }
-
     client.close()
 }
 
@@ -217,11 +206,9 @@ const updateQuote = async (req, res) => {
     if (query) {
         const updateQuote = await db.collection("data").updateOne(query, newQuote);
         res.status(200).json({ status: 200, message: "success", data: req.body })
-
     } else {
         res.status(400).json({ status: 400, message: `error`, error: "failed to fetch" });
     }
-
     client.close()
 }
 
