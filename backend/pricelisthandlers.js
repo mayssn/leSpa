@@ -35,10 +35,10 @@ const userAuth = async (req, res) => {
         if (isValidPassword) {
             res.status(200).json({ status: 200, data: true })
         } else {
-            res.status(400).json({ status: 400, data: false })
+            res.status(400).json({ status: 400, data: false, message: " Invalid username and/or password." })
         }
     } catch (err) {
-        res.status(400).json({ status: 400, message: "Error" })
+        res.status(500).json({ status: 500, message: "Error", message: "Unknown error, please contact Mayss" })
     }
     client.close()
 };

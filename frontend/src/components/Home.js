@@ -45,28 +45,24 @@ const Home = () => {
 export default Home;
 
 const Wrapper = styled.div`
-                position: relative;
-                background-color: white;
-                min-height: 60vh;
-                padding: 0;
-                margin:0;
-                background-color:rgba(66,170,182,255);`
+    position: relative;
+    background-color: white;
+    min-height: 60vh;
+    padding: 0;
+    margin:0;
+    background-color:rgba(66,170,182,255);`
 
 const Video = styled.video`
-                width: 100vw;
-                height: auto !important;
-                background-color: black;
-                `
+    width: 100vw;
+    height: auto !important;
+    background-color: black;
+    `
 
 const Text = styled.p`
     position: absolute;
-
-  
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 100%;
-    height: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;

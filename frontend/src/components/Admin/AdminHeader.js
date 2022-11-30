@@ -4,16 +4,8 @@ import GoogleLogin from 'react-google-login';
 import { gapi } from 'gapi-script';
 import React, { useEffect } from 'react';
 
-const clientId = '230048907089-ohgu32l0pf3k1uplra23p5rm2mq5qm3m.apps.googleusercontent.com';
 
 
-const onSuccess = (res) => {
-    console.log(res)
-};
-
-const onFailure = (err) => {
-    console.log('failed', err);
-};
 const AdminHeader = () => {
 
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"));

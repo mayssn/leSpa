@@ -1,58 +1,57 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import GoogleLogin from 'react-google-login';
-import { gapi } from 'gapi-script';
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect } from 'react';
 
-const clientId = '230048907089-ohgu32l0pf3k1uplra23p5rm2mq5qm3m.apps.googleusercontent.com';
 
 
-const onSuccess = (res) => {
-    console.log(res)
-};
 
-const onFailure = (err) => {
-    console.log('failed', err);
-};
 const Header = () => {
-    useEffect(() => {
-        const initClient = () => {
-            gapi.client.init({
-                clientId: clientId,
-                scope: 'email https://www.googleapis.com/auth/calendar.settings.readonly ',
-            });
-        };
-        gapi.load('client:auth2', initClient);
-    });
+
+    const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"));
+    const navigate = useNavigate();
+
     return (
-
-        <Wrapper>
-            <Left>
-                <Li>
-                    <Link to="/"> Le Spa </Link>
-                </Li>
-                {/* <GoogleLogin
-                    clientId={clientId}
-                    buttonText="Sign in with Google"
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                /> */}
-            </Left>
-            <Right>
-                <Li>
-                    <Link to="about"> About us </Link>
-                </Li>
-                <Li>
-                    <Link to="services"> Our Services </Link>
-                </Li>
-                <Li>
-                    <Link to="contact"> Contact us </Link>
-                </Li>
-            </Right>
-
-        </Wrapper>
+        <>
+            <Wrapper>
+                <Left>
+                    <Li>
+                        <Link to="/"> Le Spa </Link>
+                    </Li>
+                </Left>
+                <Right>
+                    <Li>
+                        <Link to="about"> About us </Link>
+                    </Li>
+                    <Li>
+                        <Link to="services"> Our Services </Link>
+                    </Li>
+                    <Li>
+                        <Link to="contact"> Contact us </Link>
+                    </Li>
+                </Right>
+            </Wrapper>
+            {isAuth &&
+                <WrapperTwo>
+                    <Left>
+                        Admin Pannel
+                    </Left>
+                    <Right>
+                        <Li>
+                            <Link to="admin/quote"> Edit Quote </Link>
+                        </Li>
+                        <Li>
+                            <Link to="admin/services"> Services </Link>
+                        </Li>
+                        <Li>
+                            <Link to="admin/add"> Add New </Link>
+                        </Li>
+                        <Li>
+                            <button onClick={() => { window.sessionStorage.removeItem("isAuth"); navigate("/") }}> Logout</button>
+                        </Li>
+                    </Right>
+                </WrapperTwo>
+            }
+        </>
 
 
 
@@ -72,7 +71,18 @@ const Wrapper = styled.div`
     justify-content: space-between;
     font-size: 15px;
     `
-
+const WrapperTwo = styled.div`
+height: 30px;
+width: 100%;
+background-color:white;
+padding: 10px 30px;
+color: gray;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+font-size: 15px;
+border-top:0.5px solid #a7adba;
+`
 const Left = styled.div`
     display: flex;
     justify-content: flex-start;

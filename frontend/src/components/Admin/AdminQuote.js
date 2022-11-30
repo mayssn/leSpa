@@ -11,8 +11,6 @@ const AdminQuote = ({ setConfirmation }) => {
     const [oldQuote, setOldQuote] = useState(null)
     const [newQuote, setNewQuote] = useState(null)
     let navigate = useNavigate();
-
-
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
 

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import img from "../../imgs/snap.png"
 import { useEffect, setState, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import AdminLogin from "./Adminlogin";
+
 
 
 
@@ -14,8 +16,12 @@ const AdminAddService = ({ setConfirmation }) => {
     const [treatment, setTreatment] = useState(null)
     const [minutes, setMinutes] = useState(null)
     const [price, setPrice] = useState(null)
+    const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
+
 
     let navigate = useNavigate()
+
+
 
 
 
@@ -59,8 +65,10 @@ const AdminAddService = ({ setConfirmation }) => {
 
 
 
-    console.log("types", types)
 
+    if (!isAuth) {
+        return <AdminLogin />
+    }
 
     return (
         < Wrapper >

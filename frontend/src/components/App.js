@@ -15,10 +15,7 @@ import Gallery from "./Gallery";
 import Footer from "./Footer";
 import AdminQuote from "./Admin/AdminQuote";
 import AdminAddService from "./Admin/AdminAddService";
-import AdminPassword from "./Admin/AdminPassword";
 import AdminServices from "./Admin/AdminServices";
-import AdminHeader from "./Admin/AdminHeader";
-import AdminHome from "./Admin/AdminHome copy";
 import AdminConfirm from "./Admin/AdminConfirm";
 import AdminLogin from "./Admin/Adminlogin";
 import { useState } from "react";
@@ -45,13 +42,11 @@ const App = () => {
             <Route exact path="/book" element={<Appointments />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/about" element={<About />} />
-            <Route exact path="/admin/login" element={<AdminLogin />} />
+            <Route exact path="/admin/" element={<AdminLogin />} />
           </Routes>
         </WrapperClient>
         <WrapperAdmin>
-          <AdminHeader />
           <Routes>
-            <Route exact path="/admin/" element={<AdminHome />} />
             <Route exact path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />

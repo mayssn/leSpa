@@ -73,6 +73,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     margin-top: -20px;
+    background-color: ;
 `
 
 const Branch = styled.div`
@@ -80,7 +81,7 @@ const Branch = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    margin-top: 50px;
+    margin-top: 40px;
     background-color: white;
     width: 600px;
     padding: 10px 50px;
