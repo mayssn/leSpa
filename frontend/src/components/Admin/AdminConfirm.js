@@ -15,7 +15,9 @@ const AdminConfirm = ({ confirmation }) => {
     return (
         <Wrapper>
             <Box>
-                <Title><Span><CiCircleCheck /></Span>{confirmation} </Title>
+                {!confirmation ? <Title> Uh Oh, You have nothing to confirm! </Title> :
+                    // Above code is in case they get into the page through the URL with nothing to confirm
+                    <Title> <Span> <CiCircleCheck /></Span>{confirmation} </Title>}
             </Box>
         </Wrapper >
     );

@@ -60,7 +60,7 @@ const Video = styled.video`
 
 const Text = styled.p`
     position: absolute;
-    top: 40%;
+    top: 39%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;

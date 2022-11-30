@@ -10,6 +10,7 @@ const Footer = () => {
 
                 src={require('../music/dis.mp3')}
             />
+            <H1> Play some music! </H1>
         </Wrapper>
     )
 }
@@ -22,6 +23,15 @@ const Wrapper = styled.div`
     height: 80px;
     color: white;
     text-align: center;
+
 `
+const H1 = styled.h1`
+    position: absolute ;
+    top: 60%;
+    left: 10%;
+    font-size: 16px;
+    transform: translate(-50%, -50%);
+    color: gray ;
+    font-family:" Arial, Helvetica, italic, sans-serif";`
 
 export default Footer;
