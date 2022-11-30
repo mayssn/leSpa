@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,11 +20,18 @@ import AdminServices from "./Admin/AdminServices";
 import AdminHeader from "./Admin/AdminHeader";
 import AdminHome from "./Admin/AdminHome copy";
 import AdminConfirm from "./Admin/AdminConfirm";
+import AdminLogin from "./Admin/Adminlogin";
 import { useState } from "react";
 
 
 const App = () => {
   const [confirmation, setConfirmation] = useState(null)
+  let isAuth
+  useEffect(() => {
+    isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
+  }, [])
+
+  console.log("isAuth", isAuth);
 
   return (
     <>
@@ -38,6 +45,7 @@ const App = () => {
             <Route exact path="/book" element={<Appointments />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/about" element={<About />} />
+            <Route exact path="/admin/login" element={<AdminLogin />} />
           </Routes>
         </WrapperClient>
         <WrapperAdmin>
@@ -47,7 +55,6 @@ const App = () => {
             <Route exact path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/password" element={<AdminPassword setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
           </Routes>
         </WrapperAdmin>

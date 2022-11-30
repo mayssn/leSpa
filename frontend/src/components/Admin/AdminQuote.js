@@ -2,6 +2,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, setState, useState } from "react";
 import img from "../../imgs/snap.png"
 import styled from "styled-components";
+import AdminLogin from "./Adminlogin";
 
 
 
@@ -10,6 +11,10 @@ const AdminQuote = ({ setConfirmation }) => {
     const [oldQuote, setOldQuote] = useState(null)
     const [newQuote, setNewQuote] = useState(null)
     let navigate = useNavigate();
+
+
+    const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
+
 
     useEffect(() => {
         fetch("http://localhost:8000/api/get-quote/")
@@ -58,6 +63,9 @@ const AdminQuote = ({ setConfirmation }) => {
     }
 
 
+    if (!isAuth) {
+        return <AdminLogin />
+    }
 
 
     return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from 'react-google-login';
 import { gapi } from 'gapi-script';
 import React, { useEffect } from 'react';
@@ -15,6 +15,9 @@ const onFailure = (err) => {
     console.log('failed', err);
 };
 const AdminHeader = () => {
+
+    const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"));
+    const navigate = useNavigate();
 
     return (
 
@@ -32,6 +35,9 @@ const AdminHeader = () => {
                 <Li>
                     <Link to="admin/add"> Add New </Link>
                 </Li>
+                {isAuth && <Li>
+                    <button onClick={() => { window.sessionStorage.removeItem("isAuth"); navigate("/") }}> Logout</button>
+                </Li>}
             </Right>
 
 

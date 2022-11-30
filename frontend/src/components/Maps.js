@@ -11,9 +11,11 @@ const Maps = ({ address, lat, lng }) => {
     console.log("maps", address)
 
 
+
+
     const lngN = Number(lng)
     const latN = Number(lat)
-    const { isLoaded } = useLoadScript({ googleMapsApiKey: "AIzaSyCh_zx4qawF0Xx70tk6tRz100L7i7PWN64" })
+    const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY })
     const AnyReactComponent = ({ text }) => <div>{text}</div>;
     return (
 
@@ -21,7 +23,7 @@ const Maps = ({ address, lat, lng }) => {
             <div>
                 <GoogleMap
                     zoom={10}
-                    center={{ lat: 31.9, lng: 35.8 }}
+                    center={{ lat: 31.95393279257, lng: 35.8 }}
                     mapContainerClassName="mapcontainer"
                     yesIWantToUseGoogleMapApiInternals
                     style={{ height: '300px', width: "300px" }}
@@ -31,7 +33,7 @@ const Maps = ({ address, lat, lng }) => {
                         lng={lngN}
                         text="My Marker"
                     /> */}
-                    <Marker key={0} position={"31.953932792573205, 35.8836812195953"} />
+                    <Marker key={0} position={{ lat: 31.953932792573205, lng: 35.8836812195953 }} />
                 </GoogleMap>
             </div>
 

@@ -45,6 +45,7 @@ const Home = () => {
 export default Home;
 
 const Wrapper = styled.div`
+                position: relative;
                 background-color: white;
                 height: calc(100vh - 120px);
                 padding: 0;
@@ -59,8 +60,11 @@ const Video = styled.video`
 
 const Text = styled.p`
     position: absolute;
-    top: 42%;
-    left: 31%;
+
+  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     /* width: 100%;
     height: 100%; */
     display: flex;

@@ -1,6 +1,7 @@
 const e = require("express");
 const ObjectId = require('mongodb').ObjectId;
 
+const bcrypt = require("bcrypt")
 const { MongoClient } = require("mongodb")
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -15,6 +16,32 @@ const client = new MongoClient(MONGO_URI, options);
 
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 const { v4: uuidv4 } = require("uuid");
+
+
+
+
+const userAuth = async (req, res) => {
+    await client.connect();
+    const db = client.db("lespa");
+    const { email, password } = req.body
+
+
+    try {
+        const isAdmin = await db.collection("admin").findOne({ email })
+        const isValidPassword = await bcrypt.compare(password, isAdmin.password)
+
+
+        console.log("isValidPassword", isValidPassword);
+        if (isValidPassword) {
+            res.status(200).json({ status: 200, data: true })
+        } else {
+            res.status(400).json({ status: 400, data: false })
+        }
+    } catch (err) {
+        res.status(400).json({ status: 400, message: "Error" })
+    }
+    client.close()
+};
 
 
 const getPricelist = async (req, res) => {
@@ -201,5 +228,6 @@ const updateQuote = async (req, res) => {
 
 module.exports = {
     getTreatments, getTreatmentTypes, getSingleTreatment, getTreatmentByType,
-    addTreatment, deleteTreatment, updateQuote, getQuote, getPricelist, updateTreatment
+    addTreatment, deleteTreatment, updateQuote, getQuote, getPricelist, updateTreatment,
+    userAuth
 }
