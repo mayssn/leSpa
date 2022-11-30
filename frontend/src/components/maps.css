@@ -22,10 +22,10 @@
   font-size: 4rem;
 }
 
-.pin - text {
+.pin-text {
   font-size: 1.3em;
 }
 .mapcontainer {
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 250px;
 }

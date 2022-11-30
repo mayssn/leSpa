@@ -22,18 +22,13 @@ const Maps = ({ address, lat, lng }) => {
         <>
             <div>
                 <GoogleMap
-                    zoom={10}
-                    center={{ lat: 31.95393279257, lng: 35.8 }}
+                    zoom={16}
+                    center={{ lat: latN, lng: lngN }}
                     mapContainerClassName="mapcontainer"
                     yesIWantToUseGoogleMapApiInternals
                     style={{ height: '300px', width: "300px" }}
                 >
-                    {/* <AnyReactComponent
-                        lat={latN}
-                        lng={lngN}
-                        text="My Marker"
-                    /> */}
-                    <Marker key={0} position={{ lat: 31.953932792573205, lng: 35.8836812195953 }} />
+                    <Marker key={0} position={{ lat: latN, lng: lngN }} />
                 </GoogleMap>
             </div>
 
