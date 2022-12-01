@@ -34,7 +34,7 @@ const AdminAbout = ({ setConfirmation }) => {
 
         fetch("http://localhost:8000/api/update-about/", {
             method: "PATCH",
-            body: JSON.stringify({ about: newText }),
+            body: JSON.stringify({ text: newText }),
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
