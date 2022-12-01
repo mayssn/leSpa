@@ -10,11 +10,9 @@ const About = () => {
                 <Title> About us: </Title>
                 <Text>
                     Le Spa is sanctuary for relaxation and rejuvenation that is dedicated to your inner happiness and healing.
-                </Text>
-                <Text>
+                    <br /><br /><br />
                     Our aim is to connect mind, body, and soul by offering health and wellness services.
-                </Text>
-                <Text>
+                    <br /><br /><br />
                     We invite you to visit our locations in Abdoun as well as Swifieh Village!
                 </Text>
             </Container>
@@ -42,7 +40,8 @@ const Container = styled.div`
     margin: 8px 100px 0 100px;
 
     `
-
+const Br = styled.br`
+    margin-bottom: 500px`
 
 const Title = styled.h3`
     display: flex;

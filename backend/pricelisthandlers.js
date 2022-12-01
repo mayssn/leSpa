@@ -115,19 +115,38 @@ const addTreatment = async (req, res) => {
     const input = {
         type: req.body.selectedType,
         treatment: req.body.treatment,
-        treatment_lower: req.body.treatment.toLowerCase(),
+        // the line below crashed once when no treatment key was given
+        treatment_lower: !req.body.treatment ? "" : req.body.treatment.toLowerCase(),// crashed once when no treatment was given
         minutes: req.body.minutes,
         price: req.body.price,
     }
 
-    // if Object.keys(input)
+    // disclaimer, if the keys being added to the database, do not match the existing keys we are working with
+    // then some pages crash. I need to ensure there is no other service type. My mother's spa is built to fit
+    // exactly these three service types which each requires a specific room type. I do not want to add new keys.
+    // that explains my logic below that the object keys must include each one of the four types
+    // if not, then one of the existing types will be null and mess everything up 
+    // also need to ensure values don't include null or undefined or empty string.
+    // disclaimer i get quite neurotic in the back end because
+
     try {
-        await client.connect();
-        const db = client.db("lespa");
-        const treatmentNew = await db.collection("pricelist").insertOne(input)
-        res.status(200).json({ status: 200, message: "success", data: input })
+        if (Object.keys(req.body).includes("selectedType") && Object.keys(req.body).includes("treatment")
+            && Object.keys(req.body).includes("price") && Object.keys(req.body).includes("minutes")
+            && Object.keys(req.body).length === 4 && !Object.values(req.body).includes(undefined) && !Object.values(req.body).includes("")
+            && !Object.values(req.body).includes(null)
+        ) {
+            await client.connect();
+            const db = client.db("lespa");
+            const treatmentNew = await db.collection("pricelist").insertOne(input)
+            res.status(200).json({ status: 200, message: "success", data: input })
+        } else if (!Object.keys(req.body).includes("selectedType") || !Object.keys(req.body).includes("treatment")
+            || !Object.keys(req.body).includes("price") || !Object.keys(req.body).includes("minutes")) {
+            res.status(400).json({ status: 400, message: "invalid name/number of keys", data: input })
+        } else if (Object.values(req.body).includes(undefined) || Object.values(req.body).includes(null) || Object.values(req.body).includes("")) {
+            res.status(400).json({ status: 400, message: "values include undefined, null or empty string", data: input })
+        }
     } catch (err) {
-        res.status(400).json({ status: 400, message: "add unsuccessful.", data: input });
+        res.status(400).json({ status: 500, message: "unsuccessful.", data: input });
     }
     client.close()
 };
@@ -170,6 +189,19 @@ const getQuote = async (req, res) => {
     client.close()
 }
 
+const getAbout = async (req, res) => {
+
+    await client.connect();
+    const db = client.db("lespa");
+    const quote = await db.collection("data").distinct("about")
+    console.log(quote)
+    if (quote) {
+        res.status(200).json({ status: 200, data: quote })
+    } else {
+        res.status(400).json({ status: 400, message: `error` });
+    }
+    client.close()
+}
 
 const updateTreatment = async (req, res) => {
     const treatmentId = req.params.treatment;
@@ -187,8 +219,9 @@ const updateTreatment = async (req, res) => {
     }
 
 
-    if (queryTreatment) {
-        const updateTreatment = await db.collection("pricelist").updateOne({ "_id": o_id }, { $set: updatedTreatment });
+    if (queryTreatment && Object.keys(req.body).includes("selectedType") && Object.values(req.body).includes("treatment")
+        && Object.keys(req.body).includes("price") && Object.values(req.body).includes("minutes")) {
+        // const updateTreatment = await db.collection("pricelist").updateOne({ "_id": o_id }, { $set: updatedTreatment });
         res.status(200).json({ status: 200, message: "success", data: req.body })
     } else {
         res.status(400).json({ status: 400, message: `not found`, data: req.body });
@@ -212,9 +245,23 @@ const updateQuote = async (req, res) => {
     client.close()
 }
 
+const updateAbout = async (req, res) => {
+
+    await client.connect();
+    const db = client.db("lespa");
+    query = { "data": "about" }
+    const newQuote = { $set: { "about": req.body.about } };
+    if (query) {
+        const updateQuote = await db.collection("data").updateOne(query, newQuote);
+        res.status(200).json({ status: 200, message: "success", data: req.body })
+    } else {
+        res.status(400).json({ status: 400, message: `error`, error: "failed to fetch" });
+    }
+    client.close()
+}
 
 module.exports = {
     getTreatments, getTreatmentTypes, getSingleTreatment, getTreatmentByType,
     addTreatment, deleteTreatment, updateQuote, getQuote, getPricelist, updateTreatment,
-    userAuth
+    getAbout, userAuth, updateAbout
 }

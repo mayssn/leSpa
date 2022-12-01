@@ -40,6 +40,9 @@ const Header = () => {
                             <Link to="admin/quote"> Edit Quote </Link>
                         </Li>
                         <Li>
+                            <Link to="admin/about"> About us </Link>
+                        </Li>
+                        <Li>
                             <Link to="admin/services"> Services </Link>
                         </Li>
                         <Li>

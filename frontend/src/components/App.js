@@ -18,6 +18,7 @@ import AdminAddService from "./Admin/AdminAddService";
 import AdminServices from "./Admin/AdminServices";
 import AdminConfirm from "./Admin/AdminConfirm";
 import AdminLogin from "./Admin/Adminlogin";
+import AdminAbout from "./Admin/AdminAbout";
 import { useState } from "react";
 
 
@@ -48,6 +49,7 @@ const App = () => {
         <WrapperAdmin>
           <Routes>
             <Route exact path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
+            <Route exact path="/admin/about" element={<AdminAbout setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
             <Route exact path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />

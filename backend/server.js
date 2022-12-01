@@ -12,9 +12,11 @@ const {
     deleteTreatment,
     updateQuote,
     getQuote,
+    getAbout,
     getPricelist,
     updateTreatment,
-    userAuth
+    updateAbout,
+    userAuth,
 } = require("./pricelisthandlers")
 
 const { createEvent } = require("./handlers")
@@ -32,8 +34,10 @@ express()
     .post("/api/add-treatment", addTreatment)
     .delete("/api/delete-treatment/:treatment", deleteTreatment)
     .patch("/api/update-quote", updateQuote)
+    .patch("/api/update-about", updateAbout)
     .patch("/api/update-treatment/:treatment", updateTreatment)
     .get("/api/get-quote", getQuote)
+    .get("/api/get-about", getAbout)
 
     // user auth
     .post("/api/admin", userAuth)
