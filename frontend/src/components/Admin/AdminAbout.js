@@ -39,7 +39,7 @@ const AdminAbout = ({ setConfirmation }) => {
 
 
 
-    const oldTextSplit = oldText ? oldText.split("<Mayss>") : "loading"
+    const oldTextSplit = oldText ? oldText.split("Mayss") : "loading"
     // console.log(oldTextSplit),
 
     const handleSubmit = (event) => {
@@ -97,11 +97,11 @@ const AdminAbout = ({ setConfirmation }) => {
                     </>
                 }
                 <Form onSubmit={handleSubmit}>
-                    <Label> Edit text:</Label>
+                    <Label> Hi Mom! remember to type Mayss everytime you need a new paragraph:</Label>
                     <label>
-                        <Textarea type="text" rows="5" cols="50" name="text" onChange={(e) => setNewText(e.target.value)} />
+                        <Textarea type="text" rows="10" cols="50" name="text" defaultValue={oldText} onChange={(e) => setNewText(e.target.value)} />
                     </label>
-                    <Input type="submit" value="Submit" />
+                    <Input type="submit" value="Update" />
                 </Form>
             </Box>
         </Wrapper >
@@ -118,17 +118,17 @@ const Wrapper = styled.div`
         align-items: flex-start;
         justify-content: center;
         border: none;
+        padding: 0 0 60px 0;
     `
 
 const Box = styled.div`
-        width: 900px;
         background-color: white;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        margin: 60px 0 100px 0;
-        padding: 0 0 40px 0;
+        margin: 30px 0 100px 0;
+        padding: 0 50px 20px 50px;
         `
 
 
@@ -137,7 +137,7 @@ const Title = styled.h3`
     font-weight: lighter;
     font-size: 30px;
     color: gray;
-    margin: 40px 0;
+    margin: 30px 0 20px 0;
 
     `
 
@@ -160,18 +160,21 @@ const Label = styled.p`
     margin: 20px 0;
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: gray;
     
 `
 
 const Input = styled.input`
 margin: 7px 0 20px 0;
-width: 500px;
+width: 700px;
+height:30px
 `
 const Textarea = styled.textarea`
-margin: 7px 0 20px 0;
-width: 500px;`
+margin: 7px 0 10px 0;
+width: 700px;`
 
 const Paragraph = styled.div`
     display:flex;
