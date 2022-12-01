@@ -27,38 +27,40 @@ const TreatmentsList = () => {
     return (
 
 
-        (!pricelistF || !typesF) ?
-            <div>loading...</div> :
-            <ContainerColumn>
 
-                {(!selectedTypeF) ?
-                    <Title>Select Type:</Title> :
-                    <></>}
+        <ContainerColumn>
 
+            {(!selectedTypeF) ?
+                <Title>Select Type:</Title> :
+                <></>}
 
-                <ContainerBtn>
-                    {typesF.map(x => (
-                        <TypeBtn className={(selectedTypeF !== x.type ? "inactive" : "active")}
-                            name={x} onClick={(e) => { setSelectedTypeF(e.target.name) }}> {x.toUpperCase()} </TypeBtn>
-                    ))}
-                </ContainerBtn>
-                <ContainerColumn>{
-                    pricelistF.map(x => {
-                        if (x.type === selectedTypeF) {
-                            return (
-                                <ContainerRow >
-                                    <Service> {x.treatment} </Service>
-                                    <Detail> {x.minutes} minutes/ </Detail>
-                                    <Detail> {x.price} JOD</Detail>
-                                </ContainerRow>
-                            )
-                        }
-                    })
-                }
+            {(!pricelistF || !typesF) ?
+                <div>loading...</div> :
+                <>
+                    <ContainerBtn>
+                        {typesF.map(x => (
+                            <TypeBtn className={(selectedTypeF !== x.type ? "inactive" : "active")}
+                                name={x} onClick={(e) => { setSelectedTypeF(e.target.name) }}> {x.toUpperCase()} </TypeBtn>
+                        ))}
+                    </ContainerBtn>
+                    <ContainerColumn>{
+                        pricelistF.map(x => {
+                            if (x.type === selectedTypeF) {
+                                return (
+                                    <ContainerRow >
+                                        <Service> {x.treatment} </Service>
+                                        <Detail> {x.minutes} minutes/ </Detail>
+                                        <Detail> {x.price} JOD</Detail>
+                                    </ContainerRow>
+                                )
+                            }
+                        })
+                    }
 
-                </ContainerColumn>
+                    </ContainerColumn>
+                </>}
 
-            </ContainerColumn>
+        </ContainerColumn>
 
     );
 }
