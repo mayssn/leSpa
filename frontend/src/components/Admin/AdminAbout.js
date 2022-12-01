@@ -150,11 +150,12 @@ const Form = styled.form`
 `
 
 const Text = styled.div`
-margin-bottom: 7px;
-border: dotted 0.1em gray;
-width: 600px;
-padding: 30px;
-font-size:10px;`
+    margin-bottom: 7px;
+    border: dotted 0.1em gray;
+    width: 600px;
+    padding: 30px;
+    font-size:10px;
+`
 
 const Label = styled.p`
     margin: 20px 0;
@@ -162,7 +163,7 @@ const Label = styled.p`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 12px;
     color: gray;
     
 `

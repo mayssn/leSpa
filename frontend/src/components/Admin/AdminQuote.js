@@ -11,6 +11,7 @@ const AdminQuote = ({ setConfirmation }) => {
     const [oldQuote, setOldQuote] = useState(null)
     const [newQuote, setNewQuote] = useState(null)
     const [disableUpdate, setDisableUpdate] = useState(false) //website crashed if buttons clicked multipletimes
+    const [disableDelete, setDisableDelet] = useState(false) //website crashed if buttons clicked multipletimes
     let navigate = useNavigate();
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
@@ -81,7 +82,7 @@ const AdminQuote = ({ setConfirmation }) => {
                 </Quote>
                 <Form onSubmit={handleSubmit}>
                     <label>
-                        <Input type="text" name="quote" onChange={(e) => setNewQuote(e.target.value)} />
+                        <TextInput type="text" rows="4" name="quote" onChange={(e) => setNewQuote(e.target.value)} placeholder="Enter new quote!" />
                     </label>
                     <Input type="submit" value="Update" disabled={disableUpdate} />
                 </Form>
@@ -95,7 +96,8 @@ const Wrapper = styled.div`
         border: 1px solid gray;
         background-color: black;
         background-image: url(${img});
-        height: calc(100vh - 100px);
+        min-height: calc( 100vh - 30px);
+        padding: 30px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -103,14 +105,15 @@ const Wrapper = styled.div`
     `
 
 const Box = styled.div`
-        width: 900px;
+        min-width: 900px;
         height: 50%;
         background-color: white;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        margin-top: 100px;
+        margin-top: 30px;
+        padding: 0 20px 50px 20px;
         `
 
 
@@ -119,7 +122,7 @@ const Title = styled.h3`
     font-weight: lighter;
     font-size: 30px;
     color: gray;
-    margin: 40px 0;
+    margin: 40px 0 30px 0;
 
     `
 
@@ -132,11 +135,38 @@ const Form = styled.form`
 `
 
 const Quote = styled.div`
-margin-top: 0px;`
+    color:gray;  
+    box-sizing: border-box;
+    margin-top: 0px;
+    border: dotted 1px gray;
+    min-width:600px;
+    padding: 20px;
+    font-size: 12px;
+    display:flex;
+    text-align:center;
+    justify-content:center;
+`
+
+const Label = styled.p`
+margin: 20px 0;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+color: gray;
+
+`
+
+const TextInput = styled.textarea`
+margin: 7px 0 10px 0;
+width: 600px;
+margin-top:30px;`
 
 const Input = styled.input`
-margin-top: 20px;
-width: 500px;
+margin-top: 10px;
+width: 610px;
+height:30px;
 `
 
 
