@@ -55,7 +55,6 @@ const AdminServices = ({ setConfirmation }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                type: selectedType,
                 treatment: selectedTreatment,
                 minutes: minutes,
                 price: price

@@ -19,8 +19,8 @@ const Home = () => {
                 if (data.status === 400) {
                     console.log(data.message)
                 } else {
-                    console.log(data.data)
-                    setQuote(data.data)
+                    // website crashed when value was null so fixing it
+                    data.data ? setQuote(data.data) : console.log("quote is null")
 
                 }
             })

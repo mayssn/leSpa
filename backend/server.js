@@ -4,8 +4,6 @@ const morgan = require("morgan")
 
 
 const {
-    getTreatments,
-    getSingleTreatment,
     getTreatmentTypes,
     getTreatmentByType,
     addTreatment,
@@ -27,9 +25,7 @@ express()
     .use(express.json())
     .get("/hello", createEvent)
     .get("/api/get-pricelist", getPricelist)
-    .get("/api/get-treatments", getTreatments)
     .get("/api/get-treatment-types", getTreatmentTypes)
-    .get("/api/get-treatment/:treatment", getSingleTreatment)
     .get("/api/get-treatment-byType/:byType", getTreatmentByType)
     .post("/api/add-treatment", addTreatment)
     .delete("/api/delete-treatment/:treatment", deleteTreatment)

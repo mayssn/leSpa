@@ -22,8 +22,9 @@ const AdminQuote = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     console.log(data.message)
                 } else {
-                    console.log(data.data)
-                    setOldQuote(data.data)
+                    console.log(data)
+                    // website crashed when value was null so fixing it
+                    data.data ? setOldQuote(data.data) : console.log("quote is null")
 
                 }
             })
@@ -34,7 +35,7 @@ const AdminQuote = ({ setConfirmation }) => {
 
         fetch("http://localhost:8000/api/update-quote/", {
             method: "PATCH",
-            body: JSON.stringify({ quote: newQuote }),
+            body: JSON.stringify({ text: newQuote }),
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -61,7 +62,7 @@ const AdminQuote = ({ setConfirmation }) => {
     }
 
 
-    if (!isAuth ) {
+    if (!isAuth) {
         return <AdminLogin />
     }
 
