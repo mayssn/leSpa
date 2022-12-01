@@ -42,8 +42,6 @@ const Home = () => {
     );
 }
 
-export default Home;
-
 const Wrapper = styled.div`
     position: relative;
     background-color: white;
@@ -73,3 +71,5 @@ const Text = styled.p`
     color: white;  
     font-style: italic;
     `
+
+export default Home;

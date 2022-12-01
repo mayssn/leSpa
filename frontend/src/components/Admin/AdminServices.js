@@ -131,82 +131,85 @@ const AdminServices = ({ setConfirmation }) => {
 
     return (
         <Wrapper>
-            <Box>
-                <Title> Edit Services</Title>
-                <Form onSubmit={handleSubmit}>
-                    <label>
-                        <Label> Select Treatment Type: </Label>
-                        <Select onChange={handleSelectType}>
-                            <option selected disabled hidden>Select Type</option>
-
-                            {(!setTypes) ?
-                                <option> loading</option>
-                                : types.map(type =>
-                                    <option key={type}
-                                        value={type}
-                                    > {type}</option>
-                                )}
-                        </Select>
-                    </label>
-                    {!selectedType ? <></> :   // additional steps to help protect data keys ensure that types is not empty
-                        <>
+            {!pricelist ? <>loading</> :
+                <>
+                    <Box>
+                        <Title> Edit Services</Title>
+                        <Form onSubmit={handleSubmit}>
                             <label>
-                                <Label> Select Treatment: </Label>
-                                <Select onChange={(e) => setSelectedTreatment(e.target.value)} disabled={selectedType ? false : true}>
-                                    <option selected disabled hidden></option>
-                                    {(!pricelist || !setTypes) ?
-                                        <option> loading</option>
-                                        : pricelist.map(x => {
-                                            if (x.type == selectedType) {
-                                                return (
-                                                    <option option key={x._id}
-                                                        value={x.treatment}
-                                                        required> {x.treatment}</option>
+                                <Label> Select Treatment Type: </Label>
+                                <Select onChange={handleSelectType}>
+                                    <option selected disabled hidden>Select Type</option>
 
-                                                )
-                                            }
-                                        }
+                                    {(!setTypes) ?
+                                        <option> loading</option>
+                                        : types.map(type =>
+                                            <option key={type}
+                                                value={type}
+                                            > {type}</option>
                                         )}
                                 </Select>
                             </label>
-                        </>
-                    }
-                    {!selectedTreatment ? <></> :   // additional steps to help protect data from crashing ensure we have an objectID
-                        <>
-                            <label>
-                                <Label> Edit Name: </Label>
-                                <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
-                            </label>
-                            <label>
-                                <Label> Minutes: </Label>
-                                {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
-                                    <Input type="text" name="minutes" id="min" value="" />
-                                    : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => setMinutes(e.target.value)} />
+                            {!selectedType ? <></> :   // additional steps to help protect data keys ensure that types is not empty
+                                <>
+                                    <label>
+                                        <Label> Select Treatment: </Label>
+                                        <Select onChange={(e) => setSelectedTreatment(e.target.value)} disabled={selectedType ? false : true}>
+                                            <option selected disabled hidden></option>
+                                            {(!pricelist || !setTypes) ?
+                                                <option> loading</option>
+                                                : pricelist.map(x => {
+                                                    if (x.type == selectedType) {
+                                                        return (
+                                                            <option option key={x._id}
+                                                                value={x.treatment}
+                                                                required> {x.treatment}</option>
 
-                                }
-                            </label>
-                            <label>
-                                <Label> Price: </Label>
-                                {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
-                                    <Input type="text" name="price" id="price" value="" />
-                                    : <Input type="text" name="price" defaultValue={price} onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                }
+                                                        )
+                                                    }
+                                                }
+                                                )}
+                                        </Select>
+                                    </label>
+                                </>
+                            }
+                            {!selectedTreatment ? <></> :   // additional steps to help protect data from crashing ensure we have an objectID
+                                <>
+                                    <label>
+                                        <Label> Edit Name: </Label>
+                                        <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
+                                    </label>
+                                    <label>
+                                        <Label> Minutes: </Label>
+                                        {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
+                                            <Input type="text" name="minutes" id="min" value="" />
+                                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => setMinutes(e.target.value)} />
 
-                            </label>
-                            <Buttons>
-                                <Submit type="submit" value="update"> Update </Submit>
-                                <DelReset>
-                                    <Delete type="reset" onClick={() => { window.location.reload() }}
-                                    > Reset </Delete>
-                                    <Delete onClick={handleDelete}> Delete </Delete>
-                                </DelReset>
-                            </Buttons>
-                        </>
-                    }
+                                        }
+                                    </label>
+                                    <label>
+                                        <Label> Price: </Label>
+                                        {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
+                                            <Input type="text" name="price" id="price" value="" />
+                                            : <Input type="text" name="price" defaultValue={price} onChange={(e) => setPrice(e.target.value)}
+                                            />
+                                        }
 
-                </Form>
-            </Box>
+                                    </label>
+                                    <Buttons>
+                                        <Submit type="submit" value="update"> Update </Submit>
+                                        <DelReset>
+                                            <Delete type="reset" onClick={() => { window.location.reload() }}
+                                            > Reset </Delete>
+                                            <Delete onClick={handleDelete}> Delete </Delete>
+                                        </DelReset>
+                                    </Buttons>
+                                </>
+                            }
+
+                        </Form>
+                    </Box>
+                </>}
         </Wrapper >
     );
 }

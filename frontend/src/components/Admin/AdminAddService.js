@@ -99,42 +99,43 @@ const AdminAddService = ({ setConfirmation }) => {
 
     return (
         < Wrapper >
-            <Box>
-                <Title> Add New Service</Title>
-                <Form onSubmit={handleSubmit}>
-                    <label>
-                        <Label> Treatment Type: </Label>
-                        <Select name="selectedType" onChange={changeHandler}>
-                            <option selected disabled hidden>Select Type</option>
-                            {(!types) ?
-                                <option> loading</option>
-                                : types.map(type =>
-                                    <option key={type}
-                                        value={type}
-                                    > {type}</option>
-                                )}
-                        </Select>
-                    </label>
-                    <label>
-                        <Label> Treatment Name: </Label>
-                        <Input type="text" name="treatment" id="name" onChange={changeHandler} />
-                    </label>
-                    <label>
-                        <Label> Minutes: </Label>
-                        <Input type="text" name="minutes" onChange={changeHandler} />
-                    </label>
-                    <label>
-                        <Label> Price: </Label>
-                        <Input type="text" name="price" onChange={changeHandler} />
-                    </label>
-                    <Buttons>
-                        <Submit type="submit" value="update" disabled={disabled}> Update </Submit>
-                        <DelReset>
-                            <Delete type="reset" onClick={() => { window.location.reload() }}> Reset </Delete>
-                        </DelReset>
-                    </Buttons>
-                </Form>
-            </Box>
+            {(!types) ? <div>loading...</div> :
+                <>
+                    <Box>
+                        <Title> Add New Service</Title>
+                        <Form onSubmit={handleSubmit}>
+                            <label>
+                                <Label> Treatment Type: </Label>
+                                <Select name="selectedType" onChange={changeHandler}>
+                                    <option selected disabled hidden>Select Type</option>
+                                    {types.map(type =>
+                                        <option key={type}
+                                            value={type}
+                                        > {type}</option>
+                                    )}
+                                </Select>
+                            </label>
+                            <label>
+                                <Label> Treatment Name: </Label>
+                                <Input type="text" name="treatment" id="name" onChange={changeHandler} />
+                            </label>
+                            <label>
+                                <Label> Minutes: </Label>
+                                <Input type="text" name="minutes" onChange={changeHandler} />
+                            </label>
+                            <label>
+                                <Label> Price: </Label>
+                                <Input type="text" name="price" onChange={changeHandler} />
+                            </label>
+                            <Buttons>
+                                <Submit type="submit" value="update" disabled={disabled}> Update </Submit>
+                                <DelReset>
+                                    <Delete type="reset" onClick={() => { window.location.reload() }}> Reset </Delete>
+                                </DelReset>
+                            </Buttons>
+                        </Form>
+                    </Box>
+                </>}
         </Wrapper >
 
     );

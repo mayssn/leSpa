@@ -72,21 +72,23 @@ const AdminQuote = ({ setConfirmation }) => {
 
     return (
         <Wrapper>
-            <Box>
-                <Title> Edit Quote </Title>
-                <Quote>
-                    {(!oldQuote) ?
-                        <div> Loading...</div>
-                        : <div>{oldQuote}</div>
-                    }
-                </Quote>
-                <Form onSubmit={handleSubmit}>
-                    <label>
-                        <TextInput type="text" rows="4" name="quote" onChange={(e) => setNewQuote(e.target.value)} placeholder="Enter new quote!" />
-                    </label>
-                    <Input type="submit" value="Update" disabled={disableUpdate} />
-                </Form>
-            </Box>
+            {(!oldQuote) ? <div>Loading..</div> :
+                <>
+                    <Box>
+                        <Title> Edit Quote </Title>
+                        <Quote>
+
+                            <div>{oldQuote}</div>
+
+                        </Quote>
+                        <Form onSubmit={handleSubmit}>
+                            <label>
+                                <TextInput type="text" rows="4" name="quote" onChange={(e) => setNewQuote(e.target.value)} placeholder="Enter new quote!" />
+                            </label>
+                            <Input type="submit" value="Update" disabled={disableUpdate} />
+                        </Form>
+                    </Box>
+                </>}
         </Wrapper >
     );
 
@@ -106,6 +108,7 @@ const Wrapper = styled.div`
 
 const Box = styled.div`
         min-width: 900px;
+        
         height: 50%;
         background-color: white;
         display: flex;
@@ -123,6 +126,7 @@ const Title = styled.h3`
     font-size: 30px;
     color: gray;
     margin: 40px 0 30px 0;
+    
 
     `
 
@@ -138,8 +142,7 @@ const Quote = styled.div`
     color:gray;  
     box-sizing: border-box;
     margin-top: 0px;
-    
-    min-width:600px;
+    width: 700px;
     padding: 20px;
     font-size: 12px;
     display:flex;
