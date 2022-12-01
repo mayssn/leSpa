@@ -47,6 +47,7 @@ const AdminAddService = ({ setConfirmation }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setDisabled(true);
         fetch("http://localhost:8000/api/add-treatment", {
             method: "POST",
             headers: {

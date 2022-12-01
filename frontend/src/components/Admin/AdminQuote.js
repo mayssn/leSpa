@@ -10,6 +10,7 @@ import AdminLogin from "./Adminlogin";
 const AdminQuote = ({ setConfirmation }) => {
     const [oldQuote, setOldQuote] = useState(null)
     const [newQuote, setNewQuote] = useState(null)
+    const [disableUpdate, setDisableUpdate] = useState(false) //website crashed if buttons clicked multipletimes
     let navigate = useNavigate();
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
@@ -32,6 +33,7 @@ const AdminQuote = ({ setConfirmation }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setDisableUpdate(true) // disable button after being clicked
 
         fetch("http://localhost:8000/api/update-quote/", {
             method: "PATCH",
@@ -81,7 +83,7 @@ const AdminQuote = ({ setConfirmation }) => {
                     <label>
                         <Input type="text" name="quote" onChange={(e) => setNewQuote(e.target.value)} />
                     </label>
-                    <Input type="submit" value="Submit" />
+                    <Input type="submit" value="Update" disabled={disableUpdate} />
                 </Form>
             </Box>
         </Wrapper >

@@ -5,8 +5,13 @@ import img from "../../imgs/snap.png";
 import AdminQuote from "./AdminQuote";
 
 const AdminLogin = () => {
-  const [disabled, setDisabled] = useState(true);
+
+  // i wanted to disable the button if fields are empty as with other pages, 
+  // but when I saved the password and it was autofilling, onchange  did not capture the values.
+  // decided to  use the cheezy & ugly way of adding "required" to input
+
   const [error, setError] = useState({ status: false, message: "" });
+  const [disabled, setDisabled] = useState(false)
   const [value, setValue] = useState(null)
   const [formData, setFormData] = useState({
     email: null,
@@ -23,21 +28,15 @@ const AdminLogin = () => {
     });
   };
 
-  console.log(value)
+  console.log(formData.password)
 
-  useEffect(() => {
-    Object.values(formData).includes("") ||
-      // formData.email.length >= 1 ||
-      // formData.password.length >= 1
-      // ||
-      formData.email === null ||
-      formData.password === null
-      ? setDisabled(true)
-      : setDisabled(false);
-  }, [formData]);
+
+
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setDisabled(true); // prevent button from being clicked again
+
     fetch("/api/admin", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -66,17 +65,21 @@ const AdminLogin = () => {
     return <AdminQuote />;
   }
 
+  console.log(disabled)
+
   return (
     <Wrapper>
       <Box>
         <Form onSubmit={handleLogin}>
           <Title> Hi Mom! </Title>
           <Input
+            autoFocus
             type="email"
             placeholder="email"
             name="email"
             onChange={changeHandler}
             onFocus={removeError}
+            required
           />
           <Input
             type="password"
@@ -84,9 +87,10 @@ const AdminLogin = () => {
             name="password"
             onChange={changeHandler}
             onFocus={removeError}
+            required
           />
           {error.status && <ErrorMsg>{error.message}</ErrorMsg>}
-          <Button disabled={disabled}>Log in</Button>
+          <Button disable={disabled} >Log in</Button>
         </Form>
       </Box>
     </Wrapper>

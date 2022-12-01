@@ -86,6 +86,9 @@ const AdminAbout = ({ setConfirmation }) => {
                     <label>
                         <Input type="text" name="text" onChange={(e) => setNewText(e.target.value)} />
                     </label>
+                    <label>
+                        <textarea type="text" rows="5" cols="50" name="text" onChange={(e) => setNewText(e.target.value)} />
+                    </label>
                     <Input type="submit" value="Submit" />
                 </Form>
             </Box>
