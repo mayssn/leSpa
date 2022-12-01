@@ -8,6 +8,14 @@ import AdminLogin from "./Adminlogin";
 
 
 const AdminAbout = ({ setConfirmation }) => {
+
+
+    // I was hesitant to do allow user to edit about because I had the text 
+    // nicely paragraphed with styles. Then I decided to do it and allow user to paragaph. 
+    // the user aka Mom, can now type <Mayss> everytime she wants a new paragraph. 
+    // the text will be split into an array, and then a .map will render each div. 
+
+
     const [oldText, setOldText] = useState(null)
     const [newText, setNewText] = useState(null)
     let navigate = useNavigate();
@@ -28,6 +36,11 @@ const AdminAbout = ({ setConfirmation }) => {
                 }
             })
     }, []);
+
+
+
+    const oldTextSplit = oldText ? oldText.split("<Mayss>") : "loading"
+    // console.log(oldTextSplit),
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -70,24 +83,23 @@ const AdminAbout = ({ setConfirmation }) => {
         <Wrapper>
             <Box>
                 <Title> About Us:</Title>
-                <Text>
-                    {(!oldText) ?
-                        <div> Loading...</div>
-                        :
-                        <>
-                            <Text>
-                                {oldText}
-                            </Text>
-                        </>
-                    }
-                </Text>
+                {(!oldText || !oldTextSplit) ?
+                    <div> Loading...</div>
+                    :
+                    <>
+                        <Text>
+                            {oldTextSplit.map((paragraph) => {
+                                return (
+                                    <Paragraph> {paragraph}</Paragraph>
+                                )
+                            })}
+                        </Text>
+                    </>
+                }
                 <Form onSubmit={handleSubmit}>
                     <Label> Edit text:</Label>
                     <label>
-                        <Input type="text" name="text" onChange={(e) => setNewText(e.target.value)} />
-                    </label>
-                    <label>
-                        <textarea type="text" rows="5" cols="50" name="text" onChange={(e) => setNewText(e.target.value)} />
+                        <Textarea type="text" rows="5" cols="50" name="text" onChange={(e) => setNewText(e.target.value)} />
                     </label>
                     <Input type="submit" value="Submit" />
                 </Form>
@@ -140,6 +152,7 @@ const Form = styled.form`
 const Text = styled.div`
 margin-bottom: 7px;
 border: dotted 0.1em gray;
+width: 600px;
 padding: 30px;
 font-size:10px;`
 
@@ -156,6 +169,14 @@ const Input = styled.input`
 margin: 7px 0 20px 0;
 width: 500px;
 `
+const Textarea = styled.textarea`
+margin: 7px 0 20px 0;
+width: 500px;`
 
+const Paragraph = styled.div`
+    display:flex;
+    text-align:center;
+    justify-content: center;
+    margin: 10px 0`
 
 export default AdminAbout;

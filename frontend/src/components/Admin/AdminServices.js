@@ -9,6 +9,10 @@ import AdminLogin from "./Adminlogin";
 
 
 const AdminServices = ({ setConfirmation }) => {
+
+    // disclaimer this code is more spaghetthi than the others especially since i created different states for each variable
+    // i want to clean it up when I have time.  Also keep in mind, null values are ok here. in the backend, if null, we use existing values
+
     const [types, setTypes] = useState([])
     const [selectedType, setSelectedType] = useState(null)
     const [treatmentsList, setTreatmentsList] = useState(null)
@@ -18,6 +22,7 @@ const AdminServices = ({ setConfirmation }) => {
     const [price, setPrice] = useState(null)
     const [treatmentID, setTreatmentId] = useState(null)
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
+
 
 
 
@@ -105,7 +110,6 @@ const AdminServices = ({ setConfirmation }) => {
 
 
 
-
     useEffect(() => {
         if (selectedTreatment) {
             pricelist.map(x => {
@@ -144,52 +148,63 @@ const AdminServices = ({ setConfirmation }) => {
                                 )}
                         </Select>
                     </label>
-                    <label>
-                        <Label> Select Treatment: </Label>
-                        <Select onChange={(e) => setSelectedTreatment(e.target.value)}>
-                            <option selected disabled hidden></option>
-                            {(!pricelist || !setTypes) ?
-                                <option> loading</option>
-                                : pricelist.map(x => {
-                                    if (x.type == selectedType) {
-                                        return (
-                                            <option option key={x._id}
-                                                value={x.treatment}
-                                                required> {x.treatment}</option>
+                    {!selectedType ? <></> :   // additional steps to help protect data keys ensure that types is not empty
+                        <>
+                            <label>
+                                <Label> Select Treatment: </Label>
+                                <Select onChange={(e) => setSelectedTreatment(e.target.value)} disabled={selectedType ? false : true}>
+                                    <option selected disabled hidden></option>
+                                    {(!pricelist || !setTypes) ?
+                                        <option> loading</option>
+                                        : pricelist.map(x => {
+                                            if (x.type == selectedType) {
+                                                return (
+                                                    <option option key={x._id}
+                                                        value={x.treatment}
+                                                        required> {x.treatment}</option>
 
-                                        )
-                                    }
+                                                )
+                                            }
+                                        }
+                                        )}
+                                </Select>
+                            </label>
+                        </>
+                    }
+                    {!selectedTreatment ? <></> :   // additional steps to help protect data from crashing ensure we have an objectID
+                        <>
+                            <label>
+                                <Label> Edit Name: </Label>
+                                <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
+                            </label>
+                            <label>
+                                <Label> Minutes: </Label>
+                                {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
+                                    <Input type="text" name="minutes" id="min" value="" />
+                                    : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => setMinutes(e.target.value)} />
+
                                 }
-                                )}
-                        </Select>
-                    </label>
-                    <label>
-                        <Label> Edit Name: </Label>
-                        <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
-                    </label>
-                    <label>
-                        <Label> Minutes: </Label>
-                        {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
-                            <Input type="text" name="minutes" id="min" value="" />
-                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => setMinutes(e.target.value)} />
+                            </label>
+                            <label>
+                                <Label> Price: </Label>
+                                {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
+                                    <Input type="text" name="price" id="price" value="" />
+                                    : <Input type="text" name="price" defaultValue={price} onChange={(e) => setPrice(e.target.value)}
+                                    />
+                                }
 
-                        }
-                    </label>
-                    <label>
-                        <Label> Price: </Label>
-                        {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
-                            <Input type="text" name="price" id="price" value="" />
-                            : <Input type="text" name="price" defaultValue={price} onChange={(e) => setPrice(e.target.value)} />
-                        }
+                            </label>
+                            <Buttons>
+                                <Submit type="submit" value="update"> Update </Submit>
+                                <DelReset>
+                                    <Delete type="reset" onClick={() => { window.location.reload() }}
+                                    > Reset </Delete>
+                                    <Delete onClick={handleDelete}> Delete </Delete>
+                                </DelReset>
+                            </Buttons>
+                        </>
+                    }
 
-                    </label>
-                    <Buttons>
-                        <Submit type="submit" value="update" > Update </Submit>
-                        <DelReset>
-                            <Delete type="reset" onClick={() => { window.location.reload() }}> Reset </Delete>
-                            <Delete onClick={handleDelete}> Delete </Delete>
-                        </DelReset>
-                    </Buttons>
                 </Form>
             </Box>
         </Wrapper >
