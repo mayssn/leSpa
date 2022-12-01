@@ -138,7 +138,7 @@ const Quote = styled.div`
     color:gray;  
     box-sizing: border-box;
     margin-top: 0px;
-    border: dotted 1px gray;
+    
     min-width:600px;
     padding: 20px;
     font-size: 12px;

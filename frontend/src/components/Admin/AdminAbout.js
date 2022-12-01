@@ -81,12 +81,11 @@ const AdminAbout = ({ setConfirmation }) => {
 
     return (
         <Wrapper>
-            <Box>
-                <Title> About Us:</Title>
-                {(!oldText || !oldTextSplit) ?
-                    <div> Loading...</div>
-                    :
-                    <>
+            {(!oldText || !oldTextSplit) ?
+                <div> Loading...</div> :
+                <>
+                    <Box>
+                        <Title> About Us:</Title>
                         <Text>
                             {oldTextSplit.map((paragraph) => {
                                 return (
@@ -94,16 +93,16 @@ const AdminAbout = ({ setConfirmation }) => {
                                 )
                             })}
                         </Text>
-                    </>
-                }
-                <Form onSubmit={handleSubmit}>
-                    <Label> Hi Mom! remember to type Mayss everytime you need a new paragraph:</Label>
-                    <label>
-                        <Textarea type="text" rows="10" cols="50" name="text" defaultValue={oldText} onChange={(e) => setNewText(e.target.value)} />
-                    </label>
-                    <Input type="submit" value="Update" />
-                </Form>
-            </Box>
+
+                        <Form onSubmit={handleSubmit}>
+                            <Label> Hi Mom! remember to type Mayss everytime you need a new paragraph:</Label>
+                            <label>
+                                <Textarea type="text" rows="10" cols="50" name="text" defaultValue={oldText} onChange={(e) => setNewText(e.target.value)} />
+                            </label>
+                            <Input type="submit" value="Update" />
+                        </Form>
+                    </Box>
+                </>}
         </Wrapper >
     );
 

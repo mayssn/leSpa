@@ -1,20 +1,38 @@
 import styled from "styled-components";
 import img from "../imgs/snap.png"
-import TreatmentsList from "./TreatmentsList";
+import { useEffect, setState, useState } from "react";
 
 
 const About = () => {
+    const [aboutText, setAboutText] = useState(null)
+
+    useEffect(() => {
+        fetch("http://localhost:8000/api/get-about/")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("here", data)
+                if (data.status === 400) {
+                    console.log(data.message)
+                } else {
+                    console.log(data.data)
+                    setAboutText(data.data)
+
+                }
+            })
+    }, []);
+
+    const aboutTextSplit = aboutText ? aboutText.split("Mayss") : "loading"
     return (
         <Wrapper>
             <Container>
                 <Title> About us: </Title>
-                <Text>
-                    Le Spa is sanctuary for relaxation and rejuvenation that is dedicated to your inner happiness and healing.
-                    <br /><br /><br />
-                    Our aim is to connect mind, body, and soul by offering health and wellness services.
-                    <br /><br /><br />
-                    We invite you to visit our locations in Abdoun as well as Swifieh Village!
-                </Text>
+                <>
+                    {(!aboutText || !aboutTextSplit) ? <>Loading..</> :
+                        aboutTextSplit.map((paragraph) => {
+                            return (<Text>{paragraph}</Text>)
+                        })}
+                </>
+
             </Container>
 
 
@@ -40,15 +58,14 @@ const Container = styled.div`
     margin: 8px 100px 0 100px;
 
     `
-const Br = styled.br`
-    margin-bottom: 500px`
 
 const Title = styled.h3`
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 100px;
-    font-family:"Helvetica Neue";;
+    font-family:"Helvetica Neue";
+    margin-bottom: 60px;
 `
 
 const Text = styled.p`
