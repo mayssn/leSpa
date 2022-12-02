@@ -116,7 +116,7 @@ const Li = styled.p`
     cursor: pointer;
 }
     
-& a, a: visited, a: hover, a:active {
+& a, a:visited, a:hover, a:active {
     color: inherit;
     text-decoration: none;
 }

@@ -4,7 +4,7 @@ import { ContactInfo } from "../data/contactInfo";
 import { BsTelephone } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import Maps from "./Maps";
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { useLoadScript } from '@react-google-maps/api';
 
 
 
@@ -13,7 +13,7 @@ const Contact = () => {
     const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY })
 
     const data = ContactInfo
-    // console.log("data", data)
+    // i'm mapping over the data that includes branch name, address, lat, lng, telephone , email 
     return (
         <Wrap>
             <Container>
@@ -73,7 +73,6 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     margin-top: -20px;
-    background-color: ;
 `
 
 const Branch = styled.div`

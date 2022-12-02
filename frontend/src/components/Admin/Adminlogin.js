@@ -133,7 +133,7 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-  &:disabled: {
+  &:disabled {
     cursor: disabled;
   }
 `;

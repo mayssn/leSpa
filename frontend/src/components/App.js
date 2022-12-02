@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Redirect,
+  Link
 } from "react-router-dom";
 import Appointments from "./Appointments";
 import Home from "./Home";
@@ -20,11 +20,12 @@ import AdminServices from "./Admin/AdminServices";
 import AdminConfirm from "./Admin/AdminConfirm";
 import AdminLogin from "./Admin/Adminlogin";
 import AdminAbout from "./Admin/AdminAbout";
+import NotFoundPage from "./NotFoundPage";
 import { useState } from "react";
-Redirect,
 
 
 const App = () => {
+  // const navigate = useNavigate()
   const [confirmation, setConfirmation] = useState(null)
   let isAuth
   useEffect(() => {
@@ -57,6 +58,9 @@ const App = () => {
             <Route exact path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
           </Routes>
         </WrapperAdmin>
+        {/* <Routes>
+            <Route exact path="/*" element={<NotFoundPage />} />
+          </Routes> */}
         <Footer />
       </Router>
     </>
@@ -72,5 +76,7 @@ const WrapperClient = styled.div`
 const WrapperAdmin = styled.div`
   display:flex;
   flex-direction:column;`
+
+const Navigate = styled(Link)``
 
 export default App;

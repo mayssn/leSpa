@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import img from "../imgs/snap.png"
-import { useEffect, setState, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const About = () => {
@@ -20,7 +20,7 @@ const About = () => {
                 }
             })
     }, []);
-
+    // i'm splitting the text so it can be paragraphed
     const aboutTextSplit = aboutText ? aboutText.split("Mayss") : "loading"
     return (
         <Wrapper>
@@ -28,8 +28,8 @@ const About = () => {
                 <Title> About us: </Title>
                 <>
                     {(!aboutText || !aboutTextSplit) ? <>Loading..</> :
-                        aboutTextSplit.map((paragraph) => {
-                            return (<Text>{paragraph}</Text>)
+                        aboutTextSplit.map((paragraph, i) => {
+                            return (<Text key={i} >{paragraph}</Text>) // index just used to generate key
                         })}
                 </>
 

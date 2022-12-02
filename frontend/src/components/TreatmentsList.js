@@ -14,7 +14,7 @@ const TreatmentsList = () => {
                 if (data.status === 400) {
                     console.log(data)
                 } else {
-                    let pricel = data.data
+                    let pricel = data.data.sort((a, b) => (a.treatment > b.treatment ? 1 : -1))
                     let typesArray = [... new Set(pricel.map(x => x.type))];
                     setPricelistF(pricel)
                     setTypesF(typesArray)

@@ -4,10 +4,10 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 const Footer = () => {
+    // music player 
     return (
         <Wrapper>
             <AudioPlayer
-
                 src={require('../music/dis.mp3')}
             />
             <H1> Play some music! </H1>

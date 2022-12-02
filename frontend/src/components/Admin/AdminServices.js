@@ -15,7 +15,7 @@ const AdminServices = ({ setConfirmation }) => {
 
     const [types, setTypes] = useState([])
     const [selectedType, setSelectedType] = useState(null)
-    const [treatmentList, setTreatmentList] = useState(null)
+    let treatmentList = []
     const [pricelist, setPricelist] = useState(null)
     const [selectedTreatment, setSelectedTreatment] = useState(null)
     const [minutes, setMinutes] = useState(null)
@@ -97,10 +97,12 @@ const AdminServices = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     console.log(data)
                 } else {
-                    let pricel = data.data
-                    let typesArray = [... new Set(pricel.map(x => x.type))];
+                    let pricel = data.data.sort((a, b) => (a.treatment > b.treatment ? 1 : -1))  //sorting it
+                    let typesArray = [... new Set(pricel.map(x => x.type))];   // generating just the types. although I have an endpoint for types that I use in add service, this will render faster.
+
                     setPricelist(pricel)
                     setTypes(typesArray)
+
 
                 }
             })
@@ -108,8 +110,7 @@ const AdminServices = ({ setConfirmation }) => {
 
 
 
-    console.log(treatmentList)
-    // console.log(sorted)
+
     useEffect(() => {
         if (selectedTreatment) {
             pricelist.map(x => {
@@ -124,14 +125,7 @@ const AdminServices = ({ setConfirmation }) => {
 
     }, [selectedTreatment]);
 
-    //sort the list
-    // if (pricelist) {
-    //     let treatmentList = pricelist.map(x => { return x.treatment })
-    // }
 
-    // if (treatmentList) {
-    //     let sortedList = treatmentList.sort()
-    // }
 
 
 
