@@ -60,7 +60,7 @@ const Wrap = styled.div`
     background-image: url(${img});
     /* height: calc(100vh - 100px); */
     color: black;
-    font-family:" Arial, Helvetica, sans-serif";
+    font-family:"Helvetica Neue";
     font-size: 16px;
     padding: 0 0 40px 0;
     min-height: calc(100vh - 100px);
@@ -91,7 +91,8 @@ const Branch = styled.div`
     `
 
 const Title = styled.p`
-    font-weight:bold;`
+font-family:"Helvetica Neue";
+    font-weight:light`
 
 const Box = styled.div`
     display: flex;
@@ -108,6 +109,9 @@ const TextBox = styled.div`
     display: inline-flex;
     flex-direction: column;
     width:200px;
-    margin-left:0;`
+    margin-left:0;
+    color:black;
+    font-weight: light;
+    `
 
 export default Contact;

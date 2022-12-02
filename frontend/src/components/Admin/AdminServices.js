@@ -127,7 +127,7 @@ const AdminServices = ({ setConfirmation }) => {
 
 
 
-
+    console.log("minn", minutes)
     if (!isAuth) {
         return <AdminLogin />
     }
@@ -183,18 +183,18 @@ const AdminServices = ({ setConfirmation }) => {
                                         <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
                                     </label>
                                     <label>
-                                        <Label> Minutes: </Label>
-                                        {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
+                                        <Label > Minutes: </Label>
+                                        {(!pricelist || !selectedTreatment || !selectedTreatment) ?
                                             <Input type="text" name="minutes" id="min" value="" />
-                                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => { console.log(e.target.value.length); setMinutes(e.target.value) }} />
+                                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => { setMinutes(e.target.value) }} />
 
                                         }
                                     </label>
                                     <label>
                                         <Label> Price: </Label>
-                                        {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
-                                            <Input type="text" name="price" id="price" value="" />
-                                            : <Input type="text" name="price" defaultValue={price} onChange={(e) => { console.log(e.target.value.length); setPrice(e.target.value) }}
+                                        {(!pricelist || !selectedTreatment || !selectedTreatment) ?
+                                            <Input type="text" name="price" id="price" value="" onChange={(e) => { setPrice(e.target.value) }} />
+                                            : <Input type="text" name="price" defaultValue={price}
                                             />
                                         }
 
