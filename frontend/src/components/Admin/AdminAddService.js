@@ -9,10 +9,12 @@ import AdminLogin from "./Adminlogin";
 
 
 
+
 const AdminAddService = ({ setConfirmation }) => {
     const [types, setTypes] = useState([])
     const [disabled, setDisabled] = useState(true);
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
+
 
     let navigate = useNavigate()
 

@@ -2,7 +2,7 @@
 import { useEffect, setState, useState } from "react";
 import img from "../imgs/snap.png"
 import styled from "styled-components";
-
+const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
 
 
@@ -11,7 +11,9 @@ import styled from "styled-components";
 
 const NotFoundPage = ({ }) => {
 
+
     return (
+
         <Wrapper>
             <Box>
                 <Title> Oops! We cannot find the page your are looking for. </Title>

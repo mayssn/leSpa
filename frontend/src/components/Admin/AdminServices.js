@@ -49,7 +49,7 @@ const AdminServices = ({ setConfirmation }) => {
     }
 
 
-    console.log(minutes)
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -71,11 +71,10 @@ const AdminServices = ({ setConfirmation }) => {
                     throw new Error(data.message);
                 } else if (data.status === 200) {
                     setConfirmation("The service has been updated")
-                    navigate(`/admin/confirmation`)
                 } else {
                     console.log("unknown error", data);
                 }
-            })
+            }).then(navigate(`/admin/confirmation`))
             .catch((error) => {
                 console.log(error);
             })

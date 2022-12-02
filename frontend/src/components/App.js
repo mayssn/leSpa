@@ -32,6 +32,7 @@ const App = () => {
     isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
   }, [])
 
+  console.log("isAuth", isAuth)
 
 
   return (
@@ -45,24 +46,17 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/admin/" element={<AdminLogin />} />
-
-
-          </Routes>
-        </WrapperClient>
-        <WrapperAdmin>
-          <Routes>
             <Route path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
             <Route path="/admin/about" element={<AdminAbout setConfirmation={setConfirmation} />} />
             <Route path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
             <Route path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
             <Route path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
-
+            <Route path="*" element={<NotFoundPage />} />
 
           </Routes>
-
-        </WrapperAdmin>
+        </WrapperClient>
         <Footer />
-      </Router>
+      </Router >
     </>
   )
 };
