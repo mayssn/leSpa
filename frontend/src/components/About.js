@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import img from "../imgs/snap.png"
 import { useEffect, useState } from "react";
+import BasicRows from "./BasicRows";
 
 
 const About = () => {
@@ -31,6 +32,8 @@ const About = () => {
                         aboutTextSplit.map((paragraph, i) => {
                             return (<Text key={i} >{paragraph}</Text>) // index just used to generate key
                         })}
+                    <BasicRows />
+                    {/* <img src={require("../imgs/photos/1.jpeg")} alt="hi" /> */}
                 </>
 
             </Container>

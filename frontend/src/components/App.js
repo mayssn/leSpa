@@ -12,7 +12,7 @@ import Services from "./Services";
 import Contact from "./Contact";
 import Header from "./Header";
 import styled from "styled-components";
-import Gallery from "./Gallery";
+import Gallery from "./BasicRows";
 import Footer from "./Footer";
 import AdminQuote from "./Admin/AdminQuote";
 import AdminAddService from "./Admin/AdminAddService";
@@ -40,27 +40,24 @@ const App = () => {
         <Header />
         <WrapperClient>
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/services" element={<Services />} />
-            <Route exact path="/gallery" element={<Gallery />} />
-            <Route exact path="/book" element={<Appointments />} />
-            <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/about" element={<About />} />
-            <Route exact path="/admin/" element={<AdminLogin />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/admin/" element={<AdminLogin />} />
+            {/* <Route path="*" element={<NotFoundPage />} /> */}
           </Routes>
         </WrapperClient>
         <WrapperAdmin>
           <Routes>
-            <Route exact path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/about" element={<AdminAbout setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
-            <Route exact path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
+            <Route path="/admin/quote" element={<AdminQuote setConfirmation={setConfirmation} />} />
+            <Route path="/admin/about" element={<AdminAbout setConfirmation={setConfirmation} />} />
+            <Route path="/admin/services" element={<AdminServices setConfirmation={setConfirmation} />} />
+            <Route path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
+            <Route path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
+
           </Routes>
         </WrapperAdmin>
-        {/* <Routes>
-            <Route exact path="/*" element={<NotFoundPage />} />
-          </Routes> */}
         <Footer />
       </Router>
     </>

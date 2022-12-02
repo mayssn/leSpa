@@ -12,9 +12,9 @@ const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
 const AdminConfirm = ({ confirmation }) => {
 
-    if (!isAuth) {
-        return <AdminLogin />
-    }
+    // if (!isAuth) {
+    //     return <AdminLogin />
+    // }
 
 
     return (

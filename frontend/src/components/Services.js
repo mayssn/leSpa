@@ -62,7 +62,6 @@ const Text = styled.p`
     align-items: center;
 `
 
-const Gallery = styled.div``
 
 const Treatments = styled.div``
 
