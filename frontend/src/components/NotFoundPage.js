@@ -14,7 +14,7 @@ const NotFoundPage = ({ }) => {
     return (
         <Wrapper>
             <Box>
-                <Title> Oops! We cannot find the page your are looking for. </Title> :
+                <Title> Oops! We cannot find the page your are looking for. </Title>
             </Box>
         </Wrapper >
     );

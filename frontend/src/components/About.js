@@ -6,6 +6,7 @@ import BasicRows from "./BasicRows";
 
 const About = () => {
     const [aboutText, setAboutText] = useState(null)
+    const [expand, setExpand] = useState(false)
 
     useEffect(() => {
         fetch("http://localhost:8000/api/get-about/")
@@ -24,7 +25,9 @@ const About = () => {
     // i'm splitting the text so it can be paragraphed
     const aboutTextSplit = aboutText ? aboutText.split("Mayss") : "loading"
     return (
-        <Wrapper>
+        <Wrapper onClick={() => {
+            setExpand(false)
+        }}>
             <Container>
                 <Title> About us: </Title>
                 <>
@@ -32,7 +35,7 @@ const About = () => {
                         aboutTextSplit.map((paragraph, i) => {
                             return (<Text key={i} >{paragraph}</Text>) // index just used to generate key
                         })}
-                    <BasicRows />
+                    <BasicRows expand={expand} setExpand={setExpand} />
                     {/* <img src={require("../imgs/photos/1.jpeg")} alt="hi" /> */}
                 </>
 
