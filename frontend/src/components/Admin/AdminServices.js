@@ -15,7 +15,7 @@ const AdminServices = ({ setConfirmation }) => {
 
     const [types, setTypes] = useState([])
     const [selectedType, setSelectedType] = useState(null)
-    const [treatmentsList, setTreatmentsList] = useState(null)
+    const [treatmentList, setTreatmentList] = useState(null)
     const [pricelist, setPricelist] = useState(null)
     const [selectedTreatment, setSelectedTreatment] = useState(null)
     const [minutes, setMinutes] = useState(null)
@@ -104,12 +104,12 @@ const AdminServices = ({ setConfirmation }) => {
 
                 }
             })
-    }, [selectedType]);
+    }, []);
 
 
 
-
-
+    console.log(treatmentList)
+    // console.log(sorted)
     useEffect(() => {
         if (selectedTreatment) {
             pricelist.map(x => {
@@ -123,6 +123,16 @@ const AdminServices = ({ setConfirmation }) => {
         }
 
     }, [selectedTreatment]);
+
+    //sort the list
+    // if (pricelist) {
+    //     let treatmentList = pricelist.map(x => { return x.treatment })
+    // }
+
+    // if (treatmentList) {
+    //     let sortedList = treatmentList.sort()
+    // }
+
 
 
     if (!isAuth) {
@@ -147,7 +157,7 @@ const AdminServices = ({ setConfirmation }) => {
                                             <option key={type}
                                                 value={type}
                                             > {type}</option>
-                                        )}
+                                        ).sort()}
                                 </Select>
                             </label>
                             {!selectedType ? <></> :   // additional steps to help protect data keys ensure that types is not empty
@@ -168,7 +178,7 @@ const AdminServices = ({ setConfirmation }) => {
                                                         )
                                                     }
                                                 }
-                                                )}
+                                                ).sort()}
                                         </Select>
                                     </label>
                                 </>

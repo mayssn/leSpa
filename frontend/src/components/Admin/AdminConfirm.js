@@ -3,6 +3,8 @@ import { useEffect, setState, useState } from "react";
 import img from "../../imgs/snap.png"
 import styled from "styled-components";
 import { CiCircleCheck } from "react-icons/ci"
+import AdminLogin from "./Adminlogin";
+const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
 
 
@@ -10,6 +12,9 @@ import { CiCircleCheck } from "react-icons/ci"
 
 const AdminConfirm = ({ confirmation }) => {
 
+    if (!isAuth) {
+        return <AdminLogin />
+    }
 
 
     return (

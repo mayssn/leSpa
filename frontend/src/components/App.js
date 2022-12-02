@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Redirect,
 } from "react-router-dom";
 import Appointments from "./Appointments";
 import Home from "./Home";
@@ -20,6 +21,7 @@ import AdminConfirm from "./Admin/AdminConfirm";
 import AdminLogin from "./Admin/Adminlogin";
 import AdminAbout from "./Admin/AdminAbout";
 import { useState } from "react";
+Redirect,
 
 
 const App = () => {

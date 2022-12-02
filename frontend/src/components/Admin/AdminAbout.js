@@ -18,6 +18,7 @@ const AdminAbout = ({ setConfirmation }) => {
 
     const [oldText, setOldText] = useState(null)
     const [newText, setNewText] = useState(null)
+    const [disable, setDisable] = useState(false)
     let navigate = useNavigate();
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
@@ -44,6 +45,7 @@ const AdminAbout = ({ setConfirmation }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setDisable(true)
 
         fetch("http://localhost:8000/api/update-about/", {
             method: "PATCH",
@@ -78,6 +80,7 @@ const AdminAbout = ({ setConfirmation }) => {
         return <AdminLogin />
     }
 
+    console.log(newText)
 
     return (
         <Wrapper>
@@ -97,9 +100,9 @@ const AdminAbout = ({ setConfirmation }) => {
                         <Form onSubmit={handleSubmit}>
                             <Label> Hi Mom! remember to type Mayss everytime you need a new paragraph:</Label>
                             <label>
-                                <Textarea type="text" rows="10" cols="50" name="text" defaultValue={oldText} onChange={(e) => setNewText(e.target.value)} />
+                                <Textarea type="text" rows="10" cols="50" name="text" defaultValue={oldText} onChange={(e) => { setNewText(e.target.value) }} />
                             </label>
-                            <Input type="submit" value="Update" />
+                            <Input type="submit" value="Update" disabled={disable} />
                         </Form>
                     </Box>
                 </>}
