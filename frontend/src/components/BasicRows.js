@@ -9,21 +9,31 @@ import { photoList } from "../data/photoList";
 const BasicRows = ({ expand, setExpand }) => {
 
     const [imageSrc, setImageSrc] = useState(null)
+    const [imgIndex, setImageIndex] = useState(null)
     // "../imgs/photos/5.jpeg" .  require("../imgs/photos/5.jpeg")
 
-    console.log("imgsrc", imageSrc)
-    console.log("expand", expand)
+    // console.log("imgsrc", imageSrc)
+    // console.log("expand", expand)
+    console.log("ind", imgIndex)
+    console.log("hii", photoList[0]["src"])
+
+    const nextPhotoClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let i = (imgIndex + 1); setImageSrc(photoList[i]["src"]); setImageIndex(i)
+    }
     return (
         <>
             <Container>
                 {photoList.map((x, i) => {
-                    console.log(x.src)
+
                     return (
                         <Div onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
                             setExpand(!expand);
                             setImageSrc(x.src);
+                            setImageIndex(i)
                         }}>
                             <Img src={x.src}
                                 alt="hi" height={300} width={300} />
@@ -38,7 +48,9 @@ const BasicRows = ({ expand, setExpand }) => {
                     <Back> </Back>
                     <ExpandedDiv>
                         <Expanded src={imageSrc} />
+                        <button onClick={nextPhotoClick} hidden={(imgIndex === 11) ? true : false}> CLICK</button>
                     </ExpandedDiv>
+
                 </>
 
             }

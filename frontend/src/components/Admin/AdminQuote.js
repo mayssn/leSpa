@@ -69,7 +69,7 @@ const AdminQuote = ({ setConfirmation }) => {
         return <AdminLogin />
     }
 
-
+    // i did not prefill input with existing quote because I expect quotes to change entirely
     return (
         <Wrapper>
             {(!oldQuote) ? <div>Loading..</div> :
