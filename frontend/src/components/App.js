@@ -45,7 +45,8 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/admin/" element={<AdminLogin />} />
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
+
+
           </Routes>
         </WrapperClient>
         <WrapperAdmin>
@@ -56,7 +57,9 @@ const App = () => {
             <Route path="/admin/add" element={<AdminAddService setConfirmation={setConfirmation} />} />
             <Route path="/admin/confirmation" element={<AdminConfirm confirmation={confirmation} />} />
 
+
           </Routes>
+
         </WrapperAdmin>
         <Footer />
       </Router>
