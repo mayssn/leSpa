@@ -28,7 +28,6 @@ const AdminLogin = () => {
     });
   };
 
-  console.log(formData.password)
 
 
 
@@ -48,7 +47,6 @@ const AdminLogin = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
-          console.log("here");
           window.sessionStorage.setItem("isAuth", JSON.stringify(data.data));
           navigate("/admin/quote");
         } else {
@@ -65,7 +63,6 @@ const AdminLogin = () => {
     return <AdminQuote />;
   }
 
-  console.log(disabled)
 
   return (
     <Wrapper>

@@ -61,7 +61,6 @@ const AdminAddService = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     throw new Error(data.message);
                 } else if (data.status === 200) {
-                    console.log("hello", data);
                     setConfirmation("The service has been added")
                     navigate(`/admin/confirmation`)
                 } else {
@@ -89,9 +88,6 @@ const AdminAddService = ({ setConfirmation }) => {
             })
     }, []);
 
-
-    console.log(formData)
-    console.log("disabled", disabled)
 
     if (!isAuth) {
         return <AdminLogin />

@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt")
 const { MongoClient } = require("mongodb")
 require("dotenv").config();
 const { MONGO_URI } = process.env;
-console.log("mon", process.env)
 
 const options = {
     useNewUrlParser: true,
@@ -127,7 +126,7 @@ const deleteTreatment = async (req, res) => {
     const treatmentId = req.params.treatment;
     const o_id = new ObjectId(treatmentId);
 
-    console.log(treatmentId)
+    // console.log(treatmentId)
     await client.connect();
     const db = client.db("lespa");
     const queryTreatment = await db.collection("pricelist").find({ "_id": o_id })

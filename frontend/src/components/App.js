@@ -32,7 +32,7 @@ const App = () => {
     isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
   }, [])
 
-  console.log("isAuth", isAuth);
+
 
   return (
     <>

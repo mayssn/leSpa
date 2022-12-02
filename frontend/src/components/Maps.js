@@ -8,10 +8,6 @@ import styled from "styled-components";
 
 
 const Maps = ({ address, lat, lng }) => {
-    console.log("maps", address)
-
-
-
 
     const lngN = Number(lng)
     const latN = Number(lat)

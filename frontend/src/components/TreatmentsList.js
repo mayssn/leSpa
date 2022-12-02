@@ -23,7 +23,7 @@ const TreatmentsList = () => {
             })
     }, []);
 
-    // console.log("target", selectedTypeF)
+
     return (
 
 

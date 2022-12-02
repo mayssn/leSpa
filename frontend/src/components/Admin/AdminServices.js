@@ -32,7 +32,6 @@ const AdminServices = ({ setConfirmation }) => {
 
     const handleDelete = (e) => {
         e.preventDefault()
-        console.log("treatmentID", treatmentID);
         fetch(`http://localhost:8000/api/delete-treatment/${treatmentID}`, {
             method: "DELETE",
             headers: {
@@ -42,7 +41,7 @@ const AdminServices = ({ setConfirmation }) => {
         }).then((response) => response.json())
             .then((data) => {
                 (data.status === 400) ? console.log("treatment not found", data)
-                    : (data.status === 200) ? setConfirmation("The service has been updated")
+                    : (data.status === 200) ? setConfirmation("The service has been deleted")
                         : console.log("unknown error", data);
             }).catch((error) => {
                 console.log(error);
@@ -50,6 +49,7 @@ const AdminServices = ({ setConfirmation }) => {
     }
 
 
+    console.log(minutes)
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -70,7 +70,6 @@ const AdminServices = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     throw new Error(data.message);
                 } else if (data.status === 200) {
-                    console.log("hello", data);
                     setConfirmation("The service has been updated")
                     navigate(`/admin/confirmation`)
                 } else {
@@ -187,7 +186,7 @@ const AdminServices = ({ setConfirmation }) => {
                                         <Label> Minutes: </Label>
                                         {(!pricelist || !selectedTreatment || !selectedTreatment || !minutes) ?
                                             <Input type="text" name="minutes" id="min" value="" />
-                                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => setMinutes(e.target.value)} />
+                                            : <Input type="text" name="minutes" defaultValue={minutes} onChange={(e) => { console.log(e.target.value.length); setMinutes(e.target.value) }} />
 
                                         }
                                     </label>
@@ -195,7 +194,7 @@ const AdminServices = ({ setConfirmation }) => {
                                         <Label> Price: </Label>
                                         {(!pricelist || !selectedTreatment || !selectedTreatment || !price) ?
                                             <Input type="text" name="price" id="price" value="" />
-                                            : <Input type="text" name="price" defaultValue={price} onChange={(e) => setPrice(e.target.value)}
+                                            : <Input type="text" name="price" defaultValue={price} onChange={(e) => { console.log(e.target.value.length); setPrice(e.target.value) }}
                                             />
                                         }
 

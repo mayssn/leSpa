@@ -12,7 +12,7 @@ const AdminAbout = ({ setConfirmation }) => {
 
     // I was hesitant to do allow user to edit about because I had the text 
     // nicely paragraphed with styles. Then I decided to do it and allow user to paragaph. 
-    // the user aka Mom, can now type <Mayss> everytime she wants a new paragraph. 
+    // the user aka Mom, can now type Mayss everytime she wants a new paragraph. 
     // the text will be split into an array, and then a .map will render each div. 
 
 
@@ -31,7 +31,6 @@ const AdminAbout = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     console.log(data.message)
                 } else {
-                    console.log(data.data)
                     setOldText(data.data)
 
                 }
@@ -39,9 +38,9 @@ const AdminAbout = ({ setConfirmation }) => {
     }, []);
 
 
-
+    // splitting the data with Mayss to divide and map it with paragraphs
     const oldTextSplit = oldText ? oldText.split("Mayss") : "loading"
-    // console.log(oldTextSplit),
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -60,7 +59,6 @@ const AdminAbout = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     throw new Error(data.message);
                 } else if (data.status === 200) {
-                    console.log("hello", data);
                     setConfirmation("About us- has been updated.")
                     navigate(`/admin/confirmation`)
                 } else {
@@ -80,7 +78,7 @@ const AdminAbout = ({ setConfirmation }) => {
         return <AdminLogin />
     }
 
-    console.log(newText)
+
 
     return (
         <Wrapper>

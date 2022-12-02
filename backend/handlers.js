@@ -1,6 +1,10 @@
 const { google } = require("googleapis")
 const { CLIENT_ID, CLIENT_SECRET } = process.env
 
+
+
+// this was when I imported gogle calendar, didn't end up using it so disregard
+
 const createEvent = async (req, res) => {
 
 

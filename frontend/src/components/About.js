@@ -16,7 +16,7 @@ const About = () => {
                 if (data.status === 400) {
                     console.log(data.message)
                 } else {
-                    console.log(data.data)
+
                     setAboutText(data.data)
 
                 }

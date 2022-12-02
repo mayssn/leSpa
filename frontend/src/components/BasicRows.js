@@ -10,18 +10,35 @@ const BasicRows = ({ expand, setExpand }) => {
 
     const [imageSrc, setImageSrc] = useState(null)
     const [imgIndex, setImageIndex] = useState(null)
-    // "../imgs/photos/5.jpeg" .  require("../imgs/photos/5.jpeg")
 
-    // console.log("imgsrc", imageSrc)
-    // console.log("expand", expand)
-    console.log("ind", imgIndex)
-    console.log("hii", photoList[0]["src"])
+
+    // when the photo is expanded, they need to go to the next image
+    // if user reaches the end, then on click should exit.
 
     const nextPhotoClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
+
+        if (imgIndex !== 11) {
+            let i = (imgIndex + 1); setImageSrc(photoList[i]["src"]); setImageIndex(i)
+        }
+        else { setExpand(false) }
+    }
+
+
+    // when the photo is expanded, they need to go to the previous image
+
+    const backPhotoClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         let i = (imgIndex + 1); setImageSrc(photoList[i]["src"]); setImageIndex(i)
     }
+
+
+    // clicking anywhere on the page sets expand image to false, which 
+    // hides the image. only by clicking the little image does it set it to true
+    // had to use stop propagation to overwrite the background click function that sets it to false
+
     return (
         <>
             <Container>
@@ -46,10 +63,15 @@ const BasicRows = ({ expand, setExpand }) => {
                 expand &&
                 <>
                     <Back> </Back>
+                    <BtnBck onClick={nextPhotoClick} hidden={(imgIndex !== 0) ? false : true}>
+                        BACK
+                    </BtnBck>
+                    <BtnNxt onClick={nextPhotoClick} >
+                        {(imgIndex !== 11) ? "NEXT" : "THE END"} </BtnNxt>
                     <ExpandedDiv>
                         <Expanded src={imageSrc} />
-                        <button onClick={nextPhotoClick} hidden={(imgIndex === 11) ? true : false}> CLICK</button>
                     </ExpandedDiv>
+
 
                 </>
 
@@ -88,10 +110,10 @@ const Img = styled.img`
 const Back = styled.div`
     background-color:white;
     position:fixed;
-    opacity: 0.7;
+    opacity: 0.99;
     height:100vh;
     width:100vw;
-    top:-10%`
+    top:-10%;`
 
 const ExpandedDiv = styled.div`
     padding:20px;
@@ -103,8 +125,38 @@ const ExpandedDiv = styled.div`
     height:60vh;`
 
 const Expanded = styled.img`
-   height:60vh`
+   height:60vh;`
 
+const BtnNxt = styled.button`
+    position:fixed;
+    top: 50%;
+    left: 87%;
+    transform: translate(-50%, -50%);
+    font-size:40px;
+    width: 300px;
+    border: none;
+    color:gray;
+    background-color:transparent;
+    font-size:100px;
+    color:black;
+    font-family:"Helvetica Neue";
+    font-weight: lighter;
+  `
 
+const BtnBck = styled.button`
+    position:fixed;
+    top: 50%;
+    left: 13%;
+    transform: translate(-50%, -50%);
+    font-size:40px;
+    width: 300px;
+    border: none;
+    color:gray;
+    background-color:transparent;
+    font-size:100px;
+    color:black;
+    font-family:"Helvetica Neue";
+    font-weight: lighter;
+`
 
 export default BasicRows;

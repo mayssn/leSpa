@@ -24,7 +24,6 @@ const AdminQuote = ({ setConfirmation }) => {
                 if (data.status === 400) {
                     console.log(data.message)
                 } else {
-                    console.log(data)
                     // website crashed when value was null so fixing it
                     data.data ? setOldQuote(data.data) : console.log("quote is null")
 
