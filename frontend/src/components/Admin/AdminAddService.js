@@ -148,6 +148,7 @@ const Wrapper = styled.div`
     align-items: flex-start;
     justify-content: center;
     border: none;
+    min-height: 95vh;
     `
 
 const Box = styled.div`

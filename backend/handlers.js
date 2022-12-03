@@ -3,7 +3,9 @@ const { CLIENT_ID, CLIENT_SECRET } = process.env
 
 
 
-// this was when I imported gogle calendar, didn't end up using it so disregard
+// VIPPPPPPPP 
+// this was created when I first wanted to use google calendar but when that changed, didn't end up using it so disregard- 
+// please see pricelisthandlers!
 
 const createEvent = async (req, res) => {
 

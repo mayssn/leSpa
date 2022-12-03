@@ -16,6 +16,7 @@ const NotFoundPage = ({ }) => {
 
         <Wrapper>
             <Box>
+                <H1> 404</H1>
                 <Title> Oops! We cannot find the page your are looking for. </Title>
             </Box>
         </Wrapper >
@@ -60,7 +61,10 @@ const Title = styled.h3`
 
     `
 
-
+const H1 = styled.h1`
+    font-size:100px;
+    margin-bottom:10px;
+    color: gray`
 
 export default NotFoundPage;
 
