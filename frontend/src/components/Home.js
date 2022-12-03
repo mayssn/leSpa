@@ -58,7 +58,7 @@ const Video = styled.video`
 
 const Text = styled.p`
     position: absolute;
-    top: 39%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -70,6 +70,7 @@ const Text = styled.p`
     object-position: center;
     color: white;  
     font-style: italic;
+    font-size: 18px;
     `
 
 export default Home;

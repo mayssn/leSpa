@@ -35,8 +35,9 @@ const About = () => {
                         aboutTextSplit.map((paragraph, i) => {
                             return (<Text key={i} >{paragraph}</Text>) // index just used to generate key
                         })}
-                    <BasicRows expand={expand} setExpand={setExpand} />
-                    {/* <img src={require("../imgs/photos/1.jpeg")} alt="hi" /> */}
+                    {(!aboutText || !aboutTextSplit) ? <></> :
+                        <BasicRows expand={expand} setExpand={setExpand} />}
+
                 </>
 
             </Container>
