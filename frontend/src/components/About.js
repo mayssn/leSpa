@@ -2,6 +2,7 @@ import styled from "styled-components";
 import img from "../imgs/snap.png"
 import { useEffect, useState } from "react";
 import BasicRows from "./BasicRows";
+import Loading from "../imgs/loading.svg"  //spinner for loading
 
 
 const About = () => {
@@ -31,7 +32,7 @@ const About = () => {
             <Container>
                 <Title> About us: </Title>
                 <>
-                    {(!aboutText || !aboutTextSplit) ? <>Loading..</> :
+                    {(!aboutText || !aboutTextSplit) ? <img src={Loading} alt="ok" /> :
                         aboutTextSplit.map((paragraph, i) => {
                             return (<Text key={i} >{paragraph}</Text>) // index just used to generate key
                         })}
@@ -80,4 +81,6 @@ const Text = styled.p`
     flex-direction: column;
     align-items: center;
 `
+
+
 export default About;

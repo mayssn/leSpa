@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, setState, useState } from "react";
+import Loading from "../imgs/loading.svg"  //spinner for loading
 
 const TreatmentsList = () => {
 
@@ -35,7 +36,7 @@ const TreatmentsList = () => {
                 <></>}
 
             {(!pricelistF || !typesF) ?
-                <div>loading...</div> :
+                <img src={Loading} alt="ok" height="200" /> :
                 <>
                     <ContainerBtn>
                         {typesF.map(x => (
@@ -141,6 +142,5 @@ const Title = styled.h3`
     font-size: 100px;
     font-family:"Helvetica Neue";;
 `
-
 
 export default TreatmentsList;
