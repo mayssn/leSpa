@@ -5,28 +5,29 @@ import React, { useEffect } from 'react';
 
 
 
-const Header = () => {
+const Header = ({ setConfirmation }) => {
 
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"));
     const navigate = useNavigate();
 
+    const handleClick = (() => setConfirmation(""))
     return (
         <>
             <Wrapper>
                 <Left>
                     <Li>
-                        <Link to="/"> Le Spa </Link>
+                        <Link to="/" onClick={handleClick}> Le Spa </Link>
                     </Li>
                 </Left>
                 <Right>
                     <Li>
-                        <Link to="about"> About us </Link>
+                        <Link to="about" onClick={handleClick}> About us </Link>
                     </Li>
                     <Li>
-                        <Link to="services"> Our Services </Link>
+                        <Link to="services" onClick={handleClick}> Our Services </Link>
                     </Li>
                     <Li>
-                        <Link to="contact"> Contact us </Link>
+                        <Link to="contact" onClick={handleClick}> Contact us </Link>
                     </Li>
                 </Right>
             </Wrapper>

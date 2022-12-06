@@ -21,6 +21,7 @@ const AdminServices = ({ setConfirmation }) => {
     const [minutes, setMinutes] = useState(null)
     const [price, setPrice] = useState(null)
     const [treatmentID, setTreatmentId] = useState(null)
+    const [updatedName, setUpdatedName] = useState(null)
     const isAuth = JSON.parse(window.sessionStorage.getItem("isAuth"))
 
 
@@ -60,7 +61,7 @@ const AdminServices = ({ setConfirmation }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                treatment: selectedTreatment,
+                treatment: updatedName,
                 minutes: minutes,
                 price: price
             }),
@@ -179,7 +180,7 @@ const AdminServices = ({ setConfirmation }) => {
                                 <>
                                     <label>
                                         <Label> Edit Name: </Label>
-                                        <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} />
+                                        <Input type="text" name="updatedName" id="name" defaultValue={selectedTreatment} onChange={(e) => setUpdatedName(e.target.value)} />
                                     </label>
                                     <label>
                                         <Label > Minutes: </Label>
