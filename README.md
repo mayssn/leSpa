@@ -64,7 +64,7 @@ Note: Once the user submits the form, the update button is disabled to prevent d
 
 ## Edit the about us page.
 
-This page allows us to edit the about us page. But Mongodb doesn't allow for paragraphing. As such, if admin (aka my mother) wants to paragraph, she must type my name: Mayss. When the front end will fetches the text, it will then slice it up into different divs to create different paragraphs.<br />
+This page allows us to edit the about us page. But Mongodb doesn't allow for paragraphing. As such, if admin (aka my mother) wants to paragraph, she must type my name: Mayss. When the front end  fetches the text, it will then slice it up into different divs to create different paragraphs.<br />
 <img src="./readme%20photos/edit-about.png"  alt="edit about us" width="600" >
 
 ## Add a new service
