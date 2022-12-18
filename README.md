@@ -50,10 +50,10 @@ Please keep in mind that the only account that can log in is my mother's account
 ## Admin log in error message
 
 The error message is sent from the back end. If username or password do not match,
-the error will say "Invalid username and/or password.
+the error will say "Invalid username and/or password.<br />
 <img src="./readme%20photos/login-password.png"  alt="admin log in error" width="600" >
 
-If on the other hand, the error does not pertain to user name or password, the error will say "Unkown Error. Please contact Mayss"
+If on the other hand, the error does not pertain to user name or password, the error will say "Unkown Error. Please contact Mayss" <br />
 <img src="./readme%20photos/login-error.png"  alt="admin log in error" width="600" >
 
 ## Edit the quote.
