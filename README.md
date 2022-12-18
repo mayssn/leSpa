@@ -49,7 +49,7 @@ Please keep in mind that the only account that can log in is my mother's account
 
 ## Admin log in error message
 
-The error message is sent from the back end. If username or password do not match,
+The error message is extracted from the back end. If username or password do not match,
 the error will say "Invalid username and/or password.<br />
 <img src="./readme%20photos/login-password.png"  alt="admin log in error" width="600" >
 
