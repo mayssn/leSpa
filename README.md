@@ -1,8 +1,4 @@
 
-# LeSpa
-
-=======
-
 # Le Spa Amman
 
 ## The client portal
