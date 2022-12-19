@@ -82,7 +82,7 @@ Note, there is also a reset button that resets the form.
 
 To prevent user from browsing through a long list of services, they must first select service type.
 In this case, the user is not required to fill all the fields because the back end is conditioned to retain the original value for any field that is not filled. As such, we do not need to disable the submit button as we do in other pages. 
-The button is however disabled once the user clicks on it. This prevent the form from being submitted twice.
+The button is however disabled after the user clicks on it - to prevent the form from being submitted twice.<br />
 ![edit service](./readme%20photos/edit-services.gif)
 
 Note: each update has a confirmation message.
