@@ -58,6 +58,8 @@ the error will say "Invalid username and/or password.<br />
 If on the other hand, the error does not pertain to user name or password, the error will say "Unkown Error. Please contact Mayss" <br />
 <img src="./readme%20photos/login-error.png"  alt="admin log in error" width="600" >
 
+Once the user is logged in, then the toolbar is extended to feature admin tabs.
+
 ## Edit the quote.
 
 <img src="./readme%20photos/editquote.png"  alt="edit quote" width="600" >
