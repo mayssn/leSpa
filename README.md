@@ -1,6 +1,8 @@
 
 # Le Spa Amman
 
+Le spa's website has both a client and admin portal. All of the client side content is stored on Mongodb and can be managed in the admin portal. 
+
 ## The client portal
 
 Le Spa is one of the highest rated spas in Amman, Jordan.
